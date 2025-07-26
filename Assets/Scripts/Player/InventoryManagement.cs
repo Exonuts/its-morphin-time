@@ -54,7 +54,7 @@ public class InventoryManagement : MonoBehaviour
     public int level = 0; // at different levels you unlock the ability to hold more forms
 
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
-    private Boolean swapping = false;
+    public Boolean swapping = false;
     #endregion
     
     // Start is called before the first frame update
@@ -101,11 +101,11 @@ public class InventoryManagement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && hoveredForm == 0){ // looks for key presses to detect when key pressed
             selected = 1;
-        } else if (Input.GetKeyDown(KeyCode.Alpha2) && hoveredForm == 0){
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && hoveredForm == 0 && inventory[1] != 0){ // if not swapping, and inventory not empty
             selected = 2;
-        } else if (Input.GetKeyDown(KeyCode.Alpha3) && hoveredForm == 0){
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && hoveredForm == 0  && inventory[2] != 0){
             selected = 3;
-        } else if (Input.GetKeyDown(KeyCode.Alpha4) && hoveredForm == 0){
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && hoveredForm == 0 && inventory[3] != 0){
             selected = 4;
         } else if (Input.GetKeyDown(KeyCode.Escape)){
             if (isPaused){
@@ -146,7 +146,7 @@ public class InventoryManagement : MonoBehaviour
                 noticeText.text = "You already have this form in that slot";
             }
             swapping = false;
-        } else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4) && swapping) {
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && swapping || Input.GetKeyDown(KeyCode.Alpha3) && swapping || Input.GetKeyDown(KeyCode.Alpha4) && swapping) {
             noticeText.text = "you are not high enough level yet!";
         }
         
@@ -163,49 +163,24 @@ public class InventoryManagement : MonoBehaviour
             case 1: //shouldn thit this
                 break;
         }
-        switch (inventory[1]){
-            case 1:
-                formTwo.sprite = box;
-                break;
-            case 2:
-                formTwo.sprite = pillar;
-                break;
-            case 3:
-                formTwo.sprite = Balloon;
-                break;
-            default:
-                formTwo.sprite = noSprite;
-                break;
-        }
-        switch (inventory[2]){
-            case 1:
-                formThree.sprite = box;
-                break;
-            case 2:
-                formThree.sprite = pillar;
-                break;
-            case 3:
-                formThree.sprite = Balloon;
-                break;
-            default:
-                formThree.sprite = noSprite;
-                break;
-        }
-        switch (inventory[3]){
-            case 1:
-                formFour.sprite = box;
-                break;
-            case 2:
-                formFour.sprite = pillar;
-                break;
-            case 3:
-                formFour.sprite = Balloon;
-                break;
-            default:
-                formFour.sprite = noSprite;
-                break;
-        }
-
+        formTwo.sprite = inventory[1] switch {
+            1 => box,
+            2 => pillar,
+            3 => Balloon,
+            _ => noSprite,
+        };
+        formThree.sprite = inventory[2] switch {
+            1 => box,
+            2 => pillar,
+            3 => Balloon,
+            _ => noSprite,
+        };
+        formFour.sprite = inventory[3] switch {
+            1 => box,
+            2 => pillar,
+            3 => Balloon,
+            _ => noSprite,
+        };
     }
 
     void SwitchForm(int toSwitch){
@@ -286,7 +261,7 @@ public class InventoryManagement : MonoBehaviour
         }
     }
 
-    void UpdateFormList(){
+    void UpdateFormList(){ // testing function that displays text
         testTest.text = "";
         switch (inventory[0]){
             case 0:
@@ -385,6 +360,7 @@ public class InventoryManagement : MonoBehaviour
         //Debug.Log("Exiting trigger");
         hoveredForm = 0;
         noticeText.text = "";
+        swapping = false;
     }
     #endregion
 
