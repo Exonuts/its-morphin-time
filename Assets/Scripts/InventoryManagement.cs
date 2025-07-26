@@ -35,6 +35,16 @@ public class InventoryManagement : MonoBehaviour
     #endregion
     
     #region inventory management and form swap variables
+    public Image formOne;
+    public Image formTwo;
+    public Image formThree;
+    public Image formFour;
+
+    public Sprite slime;
+    public Sprite box;
+    public Sprite pillar;
+    public Sprite Balloon;
+    
     public TMP_Text noticeText;
     public int[] inventory = new int[4]; // four slots
     // index 0 will always be player and cannot change
@@ -49,6 +59,7 @@ public class InventoryManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         noticeText.text = "";
+        swapping = false;
     }
 
     // Update is called once per frame
@@ -107,11 +118,6 @@ public class InventoryManagement : MonoBehaviour
             noticeText.text = "";
         }
         
-        if (Input.GetKeyDown(KeyCode.LeftCurlyBracket)){
-            level--;
-        } else if (Input.GetKeyDown(KeyCode.RightCurlyBracket)){
-            level++;
-        }
         if (Input.GetKeyDown(KeyCode.Alpha1) && swapping){
             noticeText.text = "You cannot replace the player";
             swapping = false;
@@ -286,7 +292,8 @@ public class InventoryManagement : MonoBehaviour
                 testTest.text += "Form4 = balloon";
                 break;
         }
-        testTest.text += "\n Slots: " + AvailSlot();
+        testTest.text += "\nLevel:" + level;
+        testTest.text += "\nSlots:" + AvailSlot();
     }
 
  
