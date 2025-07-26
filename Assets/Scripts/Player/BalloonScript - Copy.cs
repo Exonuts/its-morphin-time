@@ -13,11 +13,13 @@ public class BalloonScript : MonoBehaviour
     public float checkRadius = 0.4f;
     private float decceleratingVelocity = 0f;
 
-    bool isDead = false;
+    public bool isDead = false;
+    public bool regenerating = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        
     }
 
     void FixedUpdate()
@@ -33,6 +35,7 @@ public class BalloonScript : MonoBehaviour
 
         if(hit != null || Input.GetKey(KeyCode.Space)) {
 
+            transform.localScale = new Vector3(0.3f,0.3f,0.3f);
             isDead = true;
             decceleratingVelocity = clampedX;
         }
@@ -50,11 +53,30 @@ public class BalloonScript : MonoBehaviour
             
         } else {
 
-            transform.localScale = new Vector3(0.3f,0.3f,0.3f);
             rb.velocity = new Vector2(decceleratingVelocity,-5f);
             decceleratingVelocity *= 0.98f;
+
+            if(transform.position.y < -6f) {
+
+                if(!regenerating) {
+
+                    StartCoroutine(regenerate());
+                }
+            
+            }
         }
         
+    }
+
+    public IEnumerator regenerate() {
+
+        regenerating = true;
+        yield return new WaitForSeconds(1f);
+        transform.localScale = new Vector3(1f,1f,1f);
+        transform.position = new Vector3(-32f,-3f,0f);
+        isDead = false;
+        regenerating = false;
+
     }
     
 

@@ -16,6 +16,7 @@ public class BirdScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().sprite = birdAnimations[0];
+        transform.position = new Vector3(-7.91f,-4.7f,0f);
     }
 
     // Update is called once per frame
@@ -39,6 +40,15 @@ public class BirdScript : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, angle);
             transform.position = Vector3.MoveTowards(transform.position, objectTarget.transform.position, 5f * Time.deltaTime);
 
+            BalloonScript b = objectTarget.GetComponent<BalloonScript>();
+
+            if(b.regenerating == true) {
+
+                idle = true;
+                needsNewAnimation = true;
+                transform.position = new Vector3(-7.91f,-4.7f,0f);
+            }
+
         } else {
 
             if(!idle) {
@@ -49,7 +59,6 @@ public class BirdScript : MonoBehaviour
                 StartCoroutine(moveRandomly());
                 idle = true;
             }
-            
 
         }
 
