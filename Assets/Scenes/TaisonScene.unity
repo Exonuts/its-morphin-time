@@ -1094,7 +1094,7 @@ GameObject:
   - component: {fileID: 742004617}
   - component: {fileID: 742004616}
   - component: {fileID: 742004615}
-  - component: {fileID: 742004614}
+  - component: {fileID: 742004621}
   m_Layer: 0
   m_Name: Player (1)
   m_TagString: Untagged
@@ -1102,32 +1102,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &742004614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742004613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b8da1b50d97bc9c18d21d65dbab9c74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  testTest: {fileID: 120191977}
-  overlay: {fileID: 180214815}
-  selectedOne: {fileID: 21300000, guid: a4b9de462272f0197914bc56a362799a, type: 3}
-  selectedTwo: {fileID: 21300000, guid: 98fc8a1a9aad67949a9ea867477bc366, type: 3}
-  selectedThree: {fileID: 21300000, guid: db8ef0187a9c35e75a6a3bf503d37bcd, type: 3}
-  selectedFour: {fileID: 21300000, guid: b1c63022d078df2c9b799b003e472856, type: 3}
-  resumeText: {fileID: 464031120}
-  menuText: {fileID: 1015712916}
-  pauseMenu: {fileID: 1833335608}
-  isPaused: 0
-  noticeText: {fileID: 1564112019}
-  inventory: 00000000000000000000000000000000
-  level: 0
-  hoveredForm: 0
 --- !u!61 &742004615
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1303,6 +1277,30 @@ Transform:
   - {fileID: 1119831080}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &742004621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 742004613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8da1b50d97bc9c18d21d65dbab9c74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  testTest: {fileID: 120191977}
+  overlay: {fileID: 180214815}
+  selectedOne: {fileID: 21300000, guid: a4b9de462272f0197914bc56a362799a, type: 3}
+  selectedTwo: {fileID: 21300000, guid: 98fc8a1a9aad67949a9ea867477bc366, type: 3}
+  selectedThree: {fileID: 21300000, guid: db8ef0187a9c35e75a6a3bf503d37bcd, type: 3}
+  selectedFour: {fileID: 21300000, guid: b1c63022d078df2c9b799b003e472856, type: 3}
+  resumeText: {fileID: 464031120}
+  menuText: {fileID: 1015712916}
+  pauseMenu: {fileID: 1833335608}
+  isPaused: 0
+  noticeText: {fileID: 1564112019}
+  inventory: 00000000000000000000000000000000
 --- !u!1 &844977152
 GameObject:
   m_ObjectHideFlags: 0
