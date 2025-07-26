@@ -482,6 +482,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &457032069
 GameObject:
   m_ObjectHideFlags: 0
@@ -646,6 +647,8 @@ Transform:
   - {fileID: 1796641361}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
@@ -2053,7 +2056,11 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1584617405}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1 &1796641360
+=======
+--- !u!1 &1917097268
+>>>>>>> Stashed changes
 =======
 --- !u!1 &1917097268
 >>>>>>> Stashed changes
@@ -2069,10 +2076,16 @@ GameObject:
   m_Component:
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 1796641361}
   - component: {fileID: 1796641362}
   m_Layer: 0
   m_Name: Square
+=======
+  - component: {fileID: 1917097269}
+  m_Layer: 0
+  m_Name: CollideCheckerGroup
+>>>>>>> Stashed changes
 =======
   - component: {fileID: 1917097269}
   m_Layer: 0
@@ -2090,7 +2103,11 @@ GameObject:
   m_IsActive: 1
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!4 &1796641361
+=======
+--- !u!4 &1917097269
+>>>>>>> Stashed changes
 =======
 --- !u!4 &1917097269
 >>>>>>> Stashed changes
@@ -2102,6 +2119,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
   m_GameObject: {fileID: 1796641360}
@@ -2168,6 +2186,8 @@ SpriteRenderer:
 =======
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
   m_GameObject: {fileID: 1917097268}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -2181,6 +2201,9 @@ SpriteRenderer:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
