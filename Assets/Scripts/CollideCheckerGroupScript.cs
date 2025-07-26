@@ -65,7 +65,7 @@ public class CollideCheckerGroupScript : MonoBehaviour {
             }
         } 
 
-        /*
+        /* Do we need this? because i think this kinda cooks it a bit
         if (newFormIndex == 2 && spawnRotation == Quaternion.identity) { // if pillar and spawn rotation (???)
             spawnPos.y += verticalPillarYOffset; 
             cansSpawn = true; // CAN SPAWN?

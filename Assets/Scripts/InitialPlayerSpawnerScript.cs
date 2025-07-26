@@ -16,8 +16,7 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
     {
         // Remove any existing player
         GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (existingPlayer != null)
-        {
+        if (existingPlayer != null) {
             Destroy(existingPlayer);
         }
 

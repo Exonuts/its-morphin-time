@@ -7,13 +7,13 @@ public class PillarHorizontalColliderScript : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Wall")) {
             isTouchingWall = true;
-            Debug.Log("PillarHorizontalCollider isTouchingWall = true");
+            //Debug.Log("PillarHorizontalCollider isTouchingWall = true");
         }
     }
     void OnTriggerExit2D(Collider2D other) {
         if (other.CompareTag("Wall")) {
             isTouchingWall = false;
-            Debug.Log("PillarHorizontalCollider isTouchingWall = false");
+            //Debug.Log("PillarHorizontalCollider isTouchingWall = false");
         }
     }
 }
