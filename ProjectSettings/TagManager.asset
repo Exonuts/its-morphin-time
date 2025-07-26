@@ -8,6 +8,7 @@ TagManager:
   - pillar transformer
   - balloon trasnformer
   - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
