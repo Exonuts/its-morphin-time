@@ -11,6 +11,9 @@ using UnityEngine.UI;
 
 public class InventoryManagement : MonoBehaviour
 {
+
+    public bool isTouchingWall = false;
+
     public TMP_Text testTest;
 
     #region in game hud
@@ -44,7 +47,8 @@ public class InventoryManagement : MonoBehaviour
     public Sprite slime;
     public Sprite box;
     public Sprite pillar;
-    public Sprite Balloon;
+    public Sprite balloon;
+    public Sprite ball;
 
     public TMP_Text noticeText;
     public int[] inventory = new int[4]; // four slots
@@ -55,33 +59,14 @@ public class InventoryManagement : MonoBehaviour
 
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     public Boolean swapping = false;
+    public CollideCheckerGroupScript ccgs;
     #endregion
     
     // Start is called before the first frame update
-    void Start() {
-        noticeText.text = "";
-        swapping = false;
-    }
+    void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>(); } // HAHAHA I CAN PUT IT ALL ON ONE LINE
 
     // Update is called once per frame
     void Update() {
-        #region in game hud variables
-        switch(selected){ // switches the highlighted selected form based on key pressed
-            case 1:
-                overlay.sprite = selectedOne;
-                break;
-            case 2:
-                overlay.sprite = selectedTwo;
-                break;
-            case 3:
-                overlay.sprite = selectedThree;
-                break;
-            case 4:
-                overlay.sprite = selectedFour;
-                break;
-        }
-        #endregion
-
         #region pause menu update things
         if (isPaused){ // sets pause menu visibility based on if the game is paused or not
             pauseMenu.SetActive(true);
@@ -101,13 +86,16 @@ public class InventoryManagement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha1) && hoveredForm == 0){ // looks for key presses to detect when key pressed
             selected = 1;
+            noticeText.text = "There isn't enough space to swap forms here";
         } else if (Input.GetKeyDown(KeyCode.Alpha2) && hoveredForm == 0 && inventory[1] != 0){ // if not swapping, and inventory not empty
             selected = 2;
         } else if (Input.GetKeyDown(KeyCode.Alpha3) && hoveredForm == 0  && inventory[2] != 0){
             selected = 3;
         } else if (Input.GetKeyDown(KeyCode.Alpha4) && hoveredForm == 0 && inventory[3] != 0){
             selected = 4;
-        } else if (Input.GetKeyDown(KeyCode.Escape)){
+        } 
+
+        if (Input.GetKeyDown(KeyCode.Escape)){
             if (isPaused){
                 Resume();
             } else {
@@ -166,24 +154,44 @@ public class InventoryManagement : MonoBehaviour
         formTwo.sprite = inventory[1] switch {
             1 => box,
             2 => pillar,
-            3 => Balloon,
+            3 => balloon,
+            4 => ball,
             _ => noSprite,
         };
         formThree.sprite = inventory[2] switch {
             1 => box,
             2 => pillar,
-            3 => Balloon,
+            3 => balloon,
+            4 => ball,
             _ => noSprite,
         };
         formFour.sprite = inventory[3] switch {
             1 => box,
             2 => pillar,
-            3 => Balloon,
+            3 => balloon,
+            4 => ball,
             _ => noSprite,
         };
+        #region in game hud variables
+        switch(selected){ // switches the highlighted selected form based on key pressed
+            case 1:
+                overlay.sprite = selectedOne;
+                break;
+            case 2:
+                overlay.sprite = selectedTwo;
+                break;
+            case 3:
+                overlay.sprite = selectedThree;
+                break;
+            case 4:
+                overlay.sprite = selectedFour;
+                break;
+        }
+        #endregion
+
     }
 
-    void SwitchForm(int toSwitch){
+    void SwitchForm(int toSwitch){ // stops you if you already have the form, if you cannot learn enough forms, or if you need to swap it
         for (int i = 0; i < 4; i++){
             if (inventory[i] == toSwitch){
                 noticeText.text = "You already have this form";
@@ -207,6 +215,9 @@ public class InventoryManagement : MonoBehaviour
                     break;
                 case 3:
                     toSwitchtx = "Balloon"; // if swapping balloon form
+                    break;
+                case 4:
+                    toSwitchtx = "Ball"; // if swapping ball form
                     break;
             }
             switch(AvailSlot()){
@@ -326,8 +337,6 @@ public class InventoryManagement : MonoBehaviour
         testTest.text += "\nSlots:" + AvailSlot();
     }
 
- 
-
     #region switching and inventory functions
     void OnTriggerEnter2D(Collider2D trigger) {
         //Debug.Log("collision" + trigger.gameObject.name);
@@ -347,12 +356,20 @@ public class InventoryManagement : MonoBehaviour
                 hoveredForm = 3;
                 noticeText.text = "[f] to pick up Balloon";
                 break;
+            case "GoBall":
+                hoveredForm = 4;
+                noticeText.text = "[f] to pick up Ball";
+                break;
             case "level up":
                 level++;
                 break;
             case "level down":
                 level--;
                 break;
+        }
+        if (trigger.CompareTag("Wall")) {
+            isTouchingWall = true;
+            Debug.Log("SmallCharacterCollider isTouchingWall = true");
         }
     }
 
@@ -361,6 +378,10 @@ public class InventoryManagement : MonoBehaviour
         hoveredForm = 0;
         noticeText.text = "";
         swapping = false;
+        if (trigger.CompareTag("Wall")) {
+            isTouchingWall = false;
+            Debug.Log("SmallCharacterCollider isTouchingWall = false");
+        }
     }
     #endregion
 
