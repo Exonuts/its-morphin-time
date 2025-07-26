@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using TMPro;
 using UnityEditor.TerrainTools;
 using UnityEditor.UI;
@@ -42,6 +43,7 @@ public class UITest : MonoBehaviour
     public int level = 0; // at different levels you unlock the ability to hold more forms
 
     public int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
+    private Boolean swapping = false;
     #endregion
     
     // Start is called before the first frame update
@@ -105,7 +107,36 @@ public class UITest : MonoBehaviour
             noticeText.text = "";
         }
         
-        
+        if (Input.GetKeyDown(KeyCode.Alpha1) && swapping){
+            noticeText.text = "You cannot replace the player";
+            swapping = false;
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && swapping && AvailSlot() >= 1){
+            if (inventory[1] != hoveredForm){ // if what is already stored isnt what youre trying to switch
+               inventory[1] = hoveredForm; // then switch it correctly
+               noticeText.text = "form swapped succesfully";
+            } else {
+                noticeText.text = "You already have this form in that slot";
+            }
+            swapping = false;
+        } else if (Input.GetKeyDown(KeyCode.Alpha3) && swapping && AvailSlot() >= 2){
+            if (inventory[2] != hoveredForm){ // if what is already stored isnt what youre trying to switch
+                inventory[2] = hoveredForm; // then switch it correctly
+               noticeText.text = "form swapped succesfully";
+            } else {
+                noticeText.text = "You already have this form in that slot";
+            }
+            swapping = false;
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && swapping && AvailSlot() >= 3){
+            if (inventory[3] != hoveredForm){ // if what is already stored isnt what youre trying to switch
+                inventory[3] = hoveredForm; // then switch it correctly
+               noticeText.text = "form swapped succesfully";
+            } else {
+                noticeText.text = "You already have this form in that slot";
+            }
+            swapping = false;
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4) && swapping) {
+            noticeText.text = "you are not high enough level yet!";
+        }
         
         UpdateFormList();
         AvailSlot();
@@ -143,7 +174,7 @@ public class UITest : MonoBehaviour
                         slotAdded = 1;
                     } else {
                         noticeText.text = "All available slots are full, please select a form to replace";
-                        ReplaceForm();
+                        swapping = true;
                         return;
                     }
                     break;    
@@ -154,7 +185,7 @@ public class UITest : MonoBehaviour
                         slotAdded = 2; // add to slot 2
                     } else { // otherwise commence replace
                         noticeText.text = "All avaiable slots are full, please select a form to replace";
-                        ReplaceForm();
+                        swapping = true;
                         return;
                     }
                     break;      
@@ -167,7 +198,7 @@ public class UITest : MonoBehaviour
                         slotAdded = 3; // add to slot 3
                     } else { // otherwise commence replace
                         noticeText.text = "All avaiable slots are full, please select a form to replace";
-                        ReplaceForm();
+                        swapping = true;
                         return;
                     }
                     break;      
@@ -175,9 +206,6 @@ public class UITest : MonoBehaviour
             inventory[slotAdded] = toSwitch;
             noticeText.text = toSwitchtx + " form has been added to slot " + slotAdded;
         }
-    }
-    void ReplaceForm(){
-        Debug.Log("replace form called");
     }
 
     int AvailSlot(){
