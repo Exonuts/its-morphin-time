@@ -14,11 +14,25 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         
+        musicSource.clip = backgroundMusicSelection[Random.Range(0,4)];
+        musicSource.Play();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+        if(!musicSource.isPlaying && musicSource.time > 0) {
+
+            musicSource.clip = backgroundMusicSelection[Random.Range(0,4)];
+            musicSource.Play();
+        }
+
+    }
+
+    public void PlaySFX(AudioClip clip) {
+
+        SFXSource.PlayOneShot(clip);
+
     }
 }
