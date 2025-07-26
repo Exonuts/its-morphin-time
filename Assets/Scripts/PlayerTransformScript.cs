@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerTransformScript : MonoBehaviour
 {
+    public GameObject pillarPrefab;
     // Start is called before the first frame update
     void Start()
     {
