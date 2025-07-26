@@ -40,11 +40,12 @@ public class InventoryManagement : MonoBehaviour
     public Image formThree;
     public Image formFour;
 
+    public Sprite noSprite;
     public Sprite slime;
     public Sprite box;
     public Sprite pillar;
     public Sprite Balloon;
-    
+
     public TMP_Text noticeText;
     public int[] inventory = new int[4]; // four slots
     // index 0 will always be player and cannot change
@@ -149,8 +150,62 @@ public class InventoryManagement : MonoBehaviour
             noticeText.text = "you are not high enough level yet!";
         }
         
+        UpdateEquippedForms();
         UpdateFormList();
         AvailSlot();
+    }
+
+    void UpdateEquippedForms(){ // super simple lot of switch statments that change the UI elements based on what forms are equipped
+        switch (inventory[0]){
+            case 0: // it should only be this really.
+                formOne.sprite = slime; 
+                break;
+            case 1: //shouldn thit this
+                break;
+        }
+        switch (inventory[1]){
+            case 1:
+                formTwo.sprite = box;
+                break;
+            case 2:
+                formTwo.sprite = pillar;
+                break;
+            case 3:
+                formTwo.sprite = Balloon;
+                break;
+            default:
+                formTwo.sprite = noSprite;
+                break;
+        }
+        switch (inventory[2]){
+            case 1:
+                formThree.sprite = box;
+                break;
+            case 2:
+                formThree.sprite = pillar;
+                break;
+            case 3:
+                formThree.sprite = Balloon;
+                break;
+            default:
+                formThree.sprite = noSprite;
+                break;
+        }
+        switch (inventory[3]){
+            case 1:
+                formFour.sprite = box;
+                break;
+            case 2:
+                formFour.sprite = pillar;
+                break;
+            case 3:
+                formFour.sprite = Balloon;
+                break;
+            default:
+                formFour.sprite = noSprite;
+                break;
+        }
+
     }
 
     void SwitchForm(int toSwitch){
@@ -219,7 +274,7 @@ public class InventoryManagement : MonoBehaviour
         }
     }
 
-    int AvailSlot(){
+    int AvailSlot(){ // simple calculation for how many form slots you have based on what elvel the player is (subject to change)
         if (level == 0){ // 0 no slots
             return 0;
         } else if (level <= 2){ // 1 2 | 1 extra
@@ -316,6 +371,12 @@ public class InventoryManagement : MonoBehaviour
                 //Debug.Log("balloon interaction");
                 hoveredForm = 3;
                 noticeText.text = "[f] to pick up Balloon";
+                break;
+            case "level up":
+                level++;
+                break;
+            case "level down":
+                level--;
                 break;
         }
     }
