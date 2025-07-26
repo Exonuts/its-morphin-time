@@ -18,6 +18,9 @@ public class PlayerScript : MonoBehaviour{
     private Animator anim;
     private bool isFacingRight;
 
+    // Death and respawn
+    public Transform respawnPoint;
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -35,7 +38,7 @@ public class PlayerScript : MonoBehaviour{
 
         // jump
         if (Input.GetButtonDown("Jump") && isGrounded()){
-            rb.AddForce(new Vector2(rb.velocity.x,jumpForce*240));
+            rb.AddForce(new Vector2(rb.velocity.x,jumpForce*100));
         }
 
         // Running and jumping animation
@@ -51,6 +54,12 @@ public class PlayerScript : MonoBehaviour{
             flip();
         }else if(input < 0 && isFacingRight){
             flip();
+        }
+
+        // fall death
+        if (rb.position.y <= -7){
+            rb.velocity = Vector2.zero;
+            rb.position = respawnPoint.position;
         }
     }
 
@@ -68,21 +77,13 @@ public class PlayerScript : MonoBehaviour{
         Gizmos.DrawWireCube(transform.position-transform.up*raycastDistance, raycastBoxSize);
     }
 
-    // grounded detection collison method
-/*    private void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.CompareTag("Ground")){
-            Vector3 normal = other.GetContact(0).normal;
-            if(normal == Vector3.up){
-                grounded = true;
-            }
+    // touch danger death
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            rb.velocity = Vector2.zero;
+            rb.position = respawnPoint.position;
         }
     }
-
-    private void OnCollisionExit2D(Collision2D other){
-        if(other.gameObject.CompareTag("Ground")){
-            grounded = false;
-        }
-    } */
 
     // flip model
     private void flip(){
