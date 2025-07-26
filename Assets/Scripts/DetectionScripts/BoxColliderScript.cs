@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PillarHorizontalColliderScript : MonoBehaviour
+public class BoxColliderScript : MonoBehaviour
 {
     public bool isTouchingWall = false;
 
@@ -11,7 +11,7 @@ public class PillarHorizontalColliderScript : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             isTouchingWall = true;
-            Debug.Log("PillarHorizontalCollider isTouchingWall = true");
+            //Debug.Log("box touching wall");
         }
     }
 
@@ -20,7 +20,7 @@ public class PillarHorizontalColliderScript : MonoBehaviour
         if (other.CompareTag("Wall"))
         {
             isTouchingWall = false;
-            Debug.Log("PillarHorizontalCollider isTouchingWall = false");
+            //Debug.Log("box not touching wall");
         }
     }
 }
