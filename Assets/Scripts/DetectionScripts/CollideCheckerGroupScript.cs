@@ -13,6 +13,11 @@ public class CollideCheckerGroupScript : MonoBehaviour {
     BoxColliderScript bcs;
     InventoryManagement invMgr;
 
+    public bool canBox;
+    public bool canSmall;
+    public bool canPillarUp;
+    public bool canPillarLR;
+
     [Header("Pillar spawn offset when upright")]
     public float verticalPillarYOffset = 20f; // tweak in Inspector
     public float pillarLowOffset = -10f; // incorporate
@@ -35,36 +40,62 @@ public class CollideCheckerGroupScript : MonoBehaviour {
                 transform.position = player.transform.position; // else move colider detectors to player center..
             }
         }
+        if (pvcs.isTouchingWall){
+            canPillarUp = false;
+        } else {
+            canPillarUp = true;
+        }
+        if (phcs.isTouchingWall || plhcs.isTouchingWall){
+            canPillarLR = false;
+        } else {
+            canPillarLR = true;
+        }
+        if (bcs.isTouchingWall){
+            canBox = false;
+        } else {
+            canBox = true;
+        }
+        if (invMgr.isTouchingWall){
+            canSmall = false;
+        } else {
+            canSmall = true;
+        }
     }
     public bool CanSpawn(int newFormIndex) {
-        bool cansSpawn = false; // until can spawn it cant
-        Quaternion spawnRotation = Quaternion.identity; // i dont know what this does
-        Vector2 spawnPos = transform.position; // i dont know what this does
-        if (newFormIndex == 2) { // if trying to spawn pillar
-            if (!pvcs.isTouchingWall) { // check if can spawn upright
-                spawnRotation = Quaternion.identity; // if can, prepare to spawn upright
-                cansSpawn = true; // set can spawn to true
-            } else if (!phcs.isTouchingWall) { // else if touching wall horizontally
-                spawnRotation = Quaternion.Euler(0, 0, 90); // prepare to spawn
-                cansSpawn = true; // can spawn  =true
-            } else if (!plhcs.isTouchingWall) { // else if touching wall lower horizontally
-                spawnRotation = Quaternion.Euler(0, 0, 90); // prepare to spawn
-                spawnPos.y += pillarLowOffset; // i really dont know what this does
-                cansSpawn = true; // camnspawn = true
-            } else { // if it cant spawn in any direction
-                cansSpawn = false; // cant spawn
-            }
-        } else if (newFormIndex == 1){ // if trying to spawn box
-            if (!bcs.isTouchingWall){
-                cansSpawn = true;
-            }
-        } else { // if its not a pillar or box
-            if (!invMgr.isTouchingWall) { // if its a smaller object (balon ball player)
-                spawnRotation = Quaternion.identity; // ????
-                cansSpawn = true; // can spawn
-            }
-        } 
+        bool cansSpawn = false; // until confirmed can spawn it cant
 
+        Quaternion spawnRotation = Quaternion.identity; 
+        Vector2 spawnPos = transform.position; 
+
+        switch (newFormIndex){
+            case 1: // if spawning box
+                if (canBox){
+                    cansSpawn = true;
+                }
+                break;
+            case 2: // if pillar
+                if (canPillarUp){
+                    spawnRotation = Quaternion.identity; // if can, prepare to spawn upright
+                    cansSpawn = true; // set can spawn to true
+                } else if (!phcs.isTouchingWall){
+                    spawnRotation = Quaternion.Euler(0, 0, 90); // prepare to spawn
+                    cansSpawn = true; // can spawn  =true
+                } else if (!plhcs.isTouchingWall){
+                    spawnRotation = Quaternion.Euler(0, 0, 90); // prepare to spawn
+                    spawnPos.y += pillarLowOffset; 
+                    cansSpawn = true; // camnspawn = true
+                }
+                break;
+            case 0:
+            case 3:
+            case 4:
+                if (canSmall){
+                    cansSpawn = true;
+                }
+                break;
+        }
+        // unless given otherwise by the swithc statement, you cannot spawn
+        
         /* Do we need this? because i think this kinda cooks it a bit
         if (newFormIndex == 2 && spawnRotation == Quaternion.identity) { // if pillar and spawn rotation (???)
             spawnPos.y += verticalPillarYOffset; 
