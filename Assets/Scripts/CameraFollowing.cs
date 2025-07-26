@@ -11,7 +11,9 @@ public class CameraFollowing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Camera.main.orthographicSize = 18f;
+        StartCoroutine(minimise());
+
     }
 
     // Update is called once per frame
@@ -24,5 +26,17 @@ public class CameraFollowing : MonoBehaviour
             smoothedPosition.z = transform.position.z; // Lock the camera's Z position
             transform.position = smoothedPosition;
         }
+    }
+
+    public IEnumerator minimise() {
+
+        yield return new WaitForSeconds(1f);
+        for (int i = 0; i < 80; i++) {
+
+            yield return new WaitForSeconds(0.02f);
+            Camera.main.orthographicSize -= 0.1f;
+
+        }
+
     }
 }
