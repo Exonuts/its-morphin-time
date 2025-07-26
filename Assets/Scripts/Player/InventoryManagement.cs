@@ -3,19 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEditor.TerrainTools;
 using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class InventoryManagement : MonoBehaviour
-{
-
+public class InventoryManagement : MonoBehaviour {
     public bool isTouchingWall = false;
-
     public TMP_Text testTest;
-
     #region in game hud
     public Image overlay;
     
@@ -24,7 +21,7 @@ public class InventoryManagement : MonoBehaviour
     public Sprite selectedThree;
     public Sprite selectedFour;
 
-    int selected = 1;
+    public int selected = 1;
     #endregion
 
     #region pause menu variables
@@ -34,10 +31,10 @@ public class InventoryManagement : MonoBehaviour
 
     public GameObject pauseMenu;
 
-    public Boolean isPaused = false;
+    Boolean isPaused = false;
     #endregion
     
-    #region inventory management and form swap variables
+    #region images and sprites
     public Image formOne;
     public Image formTwo;
     public Image formThree;
@@ -49,21 +46,24 @@ public class InventoryManagement : MonoBehaviour
     public Sprite pillar;
     public Sprite balloon;
     public Sprite ball;
+    #endregion 
 
+    #region inventory
     public TMP_Text noticeText;
     public int[] inventory = new int[4]; // four slots
     // index 0 will always be player and cannot change
     // for now level 1-2 will give you 1 index unlock slot, levels onwords tbd
     // int 1 = box, int 2 = pillar int 3 = balloon if index 1 is 1 the second form is box
-    public int level = 0; // at different levels you unlock the ability to hold more forms
+    int level = 0; // at different levels you unlock the ability to hold more forms
 
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
-    public Boolean swapping = false;
-    public CollideCheckerGroupScript ccgs;
+    Boolean swapping = false;
+    CollideCheckerGroupScript ccgs;
     #endregion
     
     // Start is called before the first frame update
-    void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>(); } // HAHAHA I CAN PUT IT ALL ON ONE LINE
+    void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
+    } // HAHAHA I CAN PUT IT ALL ON ONE LINE
 
     // Update is called once per frame
     void Update() {
@@ -84,15 +84,42 @@ public class InventoryManagement : MonoBehaviour
         }
         #endregion
 
-        if (Input.GetKeyDown(KeyCode.Alpha1) && hoveredForm == 0){ // looks for key presses to detect when key pressed
-            selected = 1;
-            noticeText.text = "There isn't enough space to swap forms here";
-        } else if (Input.GetKeyDown(KeyCode.Alpha2) && hoveredForm == 0 && inventory[1] != 0){ // if not swapping, and inventory not empty
-            selected = 2;
-        } else if (Input.GetKeyDown(KeyCode.Alpha3) && hoveredForm == 0  && inventory[2] != 0){
-            selected = 3;
-        } else if (Input.GetKeyDown(KeyCode.Alpha4) && hoveredForm == 0 && inventory[3] != 0){
-            selected = 4;
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !swapping){ // looks for key presses to detect when key pressed
+            if (selected == 1) { // if currently active is trying to be swapped too
+                noticeText.text = "Cannot swap to currently active form"; // complain
+            } else if (!ccgs.CanSpawn(inventory[0])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+            } else { // if okay
+                selected = 1; // switch
+                noticeText.text = "";
+            }
+        } else if (Input.GetKeyDown(KeyCode.Alpha2) && inventory[1] != 0 && !swapping){ // if not swapping, and inventory not empty
+            if (selected == 2) { // if currently active is trying to be swapped too
+                noticeText.text = "Cannot swap to currently active form"; // complain
+            } else if (!ccgs.CanSpawn(inventory[1])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+            } else { // if okay
+                selected = 2; // switch
+                noticeText.text = "";
+            }
+        } else if (Input.GetKeyDown(KeyCode.Alpha3)&& inventory[2] != 0 && !swapping){
+            if (selected == 3) { // if currently active is trying to be swapped too
+                noticeText.text = "Cannot swap to currently active form"; // complain
+            } else if (!ccgs.CanSpawn(inventory[2])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+            } else { // if okay
+                selected = 3; // switch
+                noticeText.text = "";
+            }
+        } else if (Input.GetKeyDown(KeyCode.Alpha4) && inventory[3] != 0 && !swapping){ // key pressed, not taking a form, 
+            if (selected == 4) { // if currently active is trying to be swapped too
+                noticeText.text = "Cannot swap to currently active form"; // complain
+            } else if (!ccgs.CanSpawn(inventory[3])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+            } else { // if okay
+                selected = 4; // switch
+                noticeText.text = "";
+            }
         } 
 
         if (Input.GetKeyDown(KeyCode.Escape)){
@@ -101,10 +128,8 @@ public class InventoryManagement : MonoBehaviour
             } else {
                 isPaused = true;
             }
-        } else if (Input.GetKeyDown(KeyCode.F) && hoveredForm != 0){ // interact key pressed and form is avaiable
+        } else if (Input.GetKeyDown(KeyCode.F) && hoveredForm != 0 && selected == 1){ // interact key pressed and form is avaiable (can only switch on main character)
             SwitchForm(hoveredForm);
-        } else if (Input.GetKeyDown(KeyCode.C)){
-            noticeText.text = "";
         }
         
         if (Input.GetKeyDown(KeyCode.Alpha1) && swapping){
@@ -302,6 +327,9 @@ public class InventoryManagement : MonoBehaviour
             case 3:
                 testTest.text += "Form2 = balloon";
                 break;
+            case 4:
+                testTest.text += "Form2 = ball";
+                break;
         }
         testTest.text += "\n";
         switch (inventory[2]){
@@ -316,6 +344,9 @@ public class InventoryManagement : MonoBehaviour
                 break;
             case 3:
                 testTest.text += "Form3 = balloon";
+                break;
+            case 4:
+                testTest.text += "Form3 = ball";
                 break;
         }
         testTest.text += "\n";
@@ -332,6 +363,9 @@ public class InventoryManagement : MonoBehaviour
             case 3:
                 testTest.text += "Form4 = balloon";
                 break;
+            case 4:
+                testTest.text += "Form4 = ball";
+                break;
         }
         testTest.text += "\nLevel:" + level;
         testTest.text += "\nSlots:" + AvailSlot();
@@ -340,36 +374,38 @@ public class InventoryManagement : MonoBehaviour
     #region switching and inventory functions
     void OnTriggerEnter2D(Collider2D trigger) {
         //Debug.Log("collision" + trigger.gameObject.name);
-        switch (trigger.gameObject.name){
-            case "GoBox":
-                //Debug.Log("box interaction");
-                hoveredForm = 1;
-                noticeText.text = "[f] to pick up Box";
-                break;
-            case "GoPillar":
-                //Debug.Log("pillar interaction");
-                hoveredForm = 2;
-                noticeText.text = "[f] to pick up pillar";
-                break;
-            case "GoBalloon":
-                //Debug.Log("balloon interaction");
-                hoveredForm = 3;
-                noticeText.text = "[f] to pick up Balloon";
-                break;
-            case "GoBall":
-                hoveredForm = 4;
-                noticeText.text = "[f] to pick up Ball";
-                break;
-            case "level up":
-                level++;
-                break;
-            case "level down":
-                level--;
-                break;
+        if (selected == 1){ // only swithcable on player
+            switch (trigger.gameObject.name){
+                case "GoBox":
+                    //Debug.Log("box interaction");
+                    hoveredForm = 1;
+                    noticeText.text = "[f] to pick up Box";
+                    break;
+                case "GoPillar":
+                    //Debug.Log("pillar interaction");
+                    hoveredForm = 2;
+                    noticeText.text = "[f] to pick up pillar";
+                    break;
+                case "GoBalloon":
+                    //Debug.Log("balloon interaction");
+                    hoveredForm = 3;
+                    noticeText.text = "[f] to pick up Balloon";
+                    break;
+                case "GoBall":
+                    hoveredForm = 4;
+                    noticeText.text = "[f] to pick up Ball";
+                    break;
+                case "level up":
+                    level++;
+                    break;
+                case "level down":
+                    level--;
+                    break;
+            }
         }
         if (trigger.CompareTag("Wall")) {
             isTouchingWall = true;
-            Debug.Log("SmallCharacterCollider isTouchingWall = true");
+            //Debug.Log("SmallCharacterCollider isTouchingWall = true");
         }
     }
 
@@ -380,7 +416,7 @@ public class InventoryManagement : MonoBehaviour
         swapping = false;
         if (trigger.CompareTag("Wall")) {
             isTouchingWall = false;
-            Debug.Log("SmallCharacterCollider isTouchingWall = false");
+            //Debug.Log("SmallCharacterCollider isTouchingWall = false");
         }
     }
     #endregion

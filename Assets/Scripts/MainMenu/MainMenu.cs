@@ -47,6 +47,8 @@ public class MainMenu : MonoBehaviour {
                 case 1:
                     break;
             }
+        } else if (Input.GetKeyDown(KeyCode.L)){
+            SceneManager.LoadScene("TESTTESTTEST");
         }
 
         switch (selected){

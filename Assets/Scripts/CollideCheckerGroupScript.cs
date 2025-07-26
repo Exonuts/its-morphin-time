@@ -5,15 +5,12 @@ using UnityEngine;
 public class CollideCheckerGroupScript : MonoBehaviour {
 
     public List<GameObject> playerPrefabs = new(4);
-
-    public int pillarFormIndex = 1; // index of pillar in prefabs
-
-    private Transform playerTransform;
-    private int currentFormIndex = -1; // None to start
+    private Transform playerTransform; // saved transform of player character
 
     PillarVerticalColliderScript pvcs;
     PillarHorizontalColliderScript phcs;
     PillarLowHorizontalColliderScript plhcs;
+    BoxColliderScript bcs;
     InventoryManagement invMgr;
 
     [Header("Pillar spawn offset when upright")]
@@ -25,6 +22,7 @@ public class CollideCheckerGroupScript : MonoBehaviour {
         pvcs = GetComponentInChildren<PillarVerticalColliderScript>();
         phcs = GetComponentInChildren<PillarHorizontalColliderScript>();
         plhcs = GetComponentInChildren<PillarLowHorizontalColliderScript>();
+        bcs = GetComponentInChildren<BoxColliderScript>();
     }
     void Update() {
         GameObject player = GameObject.FindGameObjectWithTag("Player"); // finds player
@@ -38,44 +36,52 @@ public class CollideCheckerGroupScript : MonoBehaviour {
             }
         }
     }
-    
-    void TryTransform(int newFormIndex) {
-        bool isBlocked = true;
-        Quaternion spawnRotation = Quaternion.identity;
-        // Spawn the new form
-        Vector2 spawnPos = transform.position;
-        if (newFormIndex == pillarFormIndex) {
-            if (!pvcs.isTouchingWall) {
-                isBlocked = false;
-                spawnRotation = Quaternion.identity; // Upright
-            } else if (!phcs.isTouchingWall) {
-                isBlocked = false;
-                spawnRotation = Quaternion.Euler(0, 0, 90); // Rotated 90°
-            } else if (!plhcs.isTouchingWall) {
-                isBlocked = false;
-                spawnRotation = Quaternion.Euler(0, 0, 90); // Rotated 90°
-                spawnPos.y += pillarLowOffset;
+    public bool CanSpawn(int newFormIndex) {
+        bool cansSpawn = false; // until can spawn it cant
+        Quaternion spawnRotation = Quaternion.identity; // i dont know what this does
+        Vector2 spawnPos = transform.position; // i dont know what this does
+        if (newFormIndex == 2) { // if trying to spawn pillar
+            if (!pvcs.isTouchingWall) { // check if can spawn upright
+                spawnRotation = Quaternion.identity; // if can, prepare to spawn upright
+                cansSpawn = true; // set can spawn to true
+            } else if (!phcs.isTouchingWall) { // else if touching wall horizontally
+                spawnRotation = Quaternion.Euler(0, 0, 90); // prepare to spawn
+                cansSpawn = true; // can spawn  =true
+            } else if (!plhcs.isTouchingWall) { // else if touching wall lower horizontally
+                spawnRotation = Quaternion.Euler(0, 0, 90); // prepare to spawn
+                spawnPos.y += pillarLowOffset; // i really dont know what this does
+                cansSpawn = true; // camnspawn = true
+            } else { // if it cant spawn in any direction
+                cansSpawn = false; // cant spawn
             }
-        } else {
-            if (!invMgr.isTouchingWall) {
-                isBlocked = false;
-                spawnRotation = Quaternion.identity;
+        } else if (newFormIndex == 1){ // if trying to spawn box
+            if (!bcs.isTouchingWall){
+                cansSpawn = true;
             }
-        }
-        if (isBlocked) {
-            Debug.Log("Cannot transform — all directions obstructed.");
-            return;
-        }
-        if (newFormIndex == pillarFormIndex && spawnRotation == Quaternion.identity) {
-            spawnPos.y += verticalPillarYOffset;
-        }
-        if (playerTransform != null){
-            Destroy(playerTransform.gameObject);
+        } else { // if its not a pillar or box
+            if (!invMgr.isTouchingWall) { // if its a smaller object (balon ball player)
+                spawnRotation = Quaternion.identity; // ????
+                cansSpawn = true; // can spawn
+            }
+        } 
 
-            GameObject newPlayer = Instantiate(playerPrefabs[newFormIndex], spawnPos, spawnRotation);
-            newPlayer.tag = "Player";
-            playerTransform = newPlayer.transform;
-            currentFormIndex = newFormIndex;
+        /*
+        if (newFormIndex == 2 && spawnRotation == Quaternion.identity) { // if pillar and spawn rotation (???)
+            spawnPos.y += verticalPillarYOffset; 
+            cansSpawn = true; // CAN SPAWN?
+        }
+        */
+
+        if (!cansSpawn) { // if cant spawn
+            return false; // do nothing and return false, other script will take care of warnings
+        } else if (cansSpawn && playerTransform != null){ // if can spawn and player exists already (it should)
+            Destroy(playerTransform.gameObject); //DELETE THE PLAYER
+            GameObject newPlayer = Instantiate(playerPrefabs[newFormIndex], spawnPos, spawnRotation); //SPAWN THE NEW PLAYER
+            newPlayer.tag = "Player"; // GIVE IT THE TAG PLAYER
+            playerTransform = newPlayer.transform; // CHANGE OLD PLAYER TRANSFORM TO PLAYER
+            return true; // IT CAN SPAWN (OBVIOUSLY)
+        } else { // IF IT CANT SPAWN
+            return false; // WE ALREADY COVERED THIS BUT C# DOESNT SEEM TO THINK SO XDDDD
         }
     }
 }
