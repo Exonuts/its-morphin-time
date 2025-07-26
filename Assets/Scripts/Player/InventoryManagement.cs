@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UITest : MonoBehaviour
+public class InventoryManagement : MonoBehaviour
 {
     public TMP_Text testTest;
 
@@ -40,9 +40,9 @@ public class UITest : MonoBehaviour
     // index 0 will always be player and cannot change
     // for now level 1-2 will give you 1 index unlock slot, levels onwords tbd
     // int 1 = box, int 2 = pillar int 3 = balloon if index 1 is 1 the second form is box
-    public int level = 0; // at different levels you unlock the ability to hold more forms
+    int level = 0; // at different levels you unlock the ability to hold more forms
 
-    public int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
+    int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     private Boolean swapping = false;
     #endregion
     
