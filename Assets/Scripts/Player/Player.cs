@@ -18,6 +18,9 @@ public class PlayerScript : MonoBehaviour{
     private Animator anim;
     private bool isFacingRight;
 
+    // Death and respawn
+    public Transform respawnPoint;
+
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
@@ -68,21 +71,13 @@ public class PlayerScript : MonoBehaviour{
         Gizmos.DrawWireCube(transform.position-transform.up*raycastDistance, raycastBoxSize);
     }
 
-    // grounded detection collison method
-/*    private void OnCollisionEnter2D(Collision2D other){
-        if(other.gameObject.CompareTag("Ground")){
-            Vector3 normal = other.GetContact(0).normal;
-            if(normal == Vector3.up){
-                grounded = true;
-            }
+    // player death
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            rb.velocity = Vector2.zero;
+            rb.position = respawnPoint.position;
         }
     }
-
-    private void OnCollisionExit2D(Collision2D other){
-        if(other.gameObject.CompareTag("Ground")){
-            grounded = false;
-        }
-    } */
 
     // flip model
     private void flip(){
