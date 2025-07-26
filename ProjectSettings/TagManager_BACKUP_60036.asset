@@ -3,48 +3,25 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
-  tags: []
-=======
   tags:
   - box transformer
   - pillar transformer
   - balloon trasnformer
   - Ground
 <<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  - Wall
-=======
->>>>>>> 9435fa517f2a832cd3e7e35835acca5ea04dc847
-<<<<<<< HEAD
 =======
   - Wall
 >>>>>>> ccbb6f10b1805f71a186244d09f478cd4b27834a
->>>>>>> 3eeee263d3feb29376fe89129aba618b3542f866
-<<<<<<< HEAD
-=======
-  - Wall
->>>>>>> 200cf5b48e835875d68e7c52e0f4c8b214332e25
-=======
->>>>>>> main
->>>>>>> 9435fa517f2a832cd3e7e35835acca5ea04dc847
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-<<<<<<< HEAD
-  - 
-  - 
-  - 
-=======
   - Killer
   - ground
   - Obstacle
->>>>>>> 3eeee263d3feb29376fe89129aba618b3542f866
   - 
   - 
   - 
@@ -69,6 +46,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2053609415
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
