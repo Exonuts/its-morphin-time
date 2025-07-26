@@ -2112,10 +2112,10 @@ RectTransform:
   - {fileID: 1179178596}
   m_Father: {fileID: 1131500896}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 673, y: 445}
-  m_SizeDelta: {x: 380, y: 67}
+  m_AnchorMin: {x: 0.7521721, y: 0.87900007}
+  m_AnchorMax: {x: 0.95000005, y: 0.943}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &965583979
 MonoBehaviour:
@@ -2135,7 +2135,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 36.25
+  m_Spacing: 40
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -2648,7 +2648,7 @@ Transform:
   m_GameObject: {fileID: 1315054543}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2689,6 +2689,7 @@ MonoBehaviour:
   ball: {fileID: 21300000, guid: 4980b8edd9dc0feb1bc7ccc28e31ebfc, type: 3}
   noticeText: {fileID: 709166411}
   inventory: 00000000000000000000000000000000
+  level: 0
 --- !u!1 &1379801299
 GameObject:
   m_ObjectHideFlags: 0
