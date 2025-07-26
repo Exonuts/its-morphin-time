@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
-{
+public class PlayerScript : MonoBehaviour{
+
+    // Physics
     public float moveSpeed;
     public float jumpForce;
-
-    private bool grounded;
     private Rigidbody2D rb;
 
+    // Jump detection
+    public Vector2 raycastBoxSize;
+    public float raycastDistance;
+    public LayerMask terrainLayer;
+
+    // Model and animation
     private Animator anim;
     private bool isFacingRight;
 
-    void Start()
-    {
+    void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
@@ -23,19 +27,14 @@ public class PlayerScript : MonoBehaviour
         flip();
     }
 
-    void Update()
-    {
-        // float input = Input.GetAxisRaw("Horizontal");
-        // rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
-
+    void Update(){
         float input = Input.GetAxis("Horizontal");
 
         // Apply velocity continuously based on input
         rb.velocity = new Vector2(input*moveSpeed, rb.velocity.y);
 
         // jump
-        if (Input.GetButtonDown("Jump") && grounded)
-        {
+        if (Input.GetButtonDown("Jump") && isGrounded()){
             rb.AddForce(new Vector2(rb.velocity.x,jumpForce*240));
         }
 
@@ -45,7 +44,7 @@ public class PlayerScript : MonoBehaviour
         }else{
             anim.SetBool("isRunning",false);
         }
-        anim.SetBool("isJumping",!grounded);
+        anim.SetBool("isJumping",!isGrounded());
 
         // flipping model
         if (input > 0 && !isFacingRight){
@@ -55,10 +54,27 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    // grounded detection
-    private void OnCollisionEnter2D(Collision2D other){
+    // grounded detection raycast method
+    public bool isGrounded(){
+        if(Physics2D.BoxCast(transform.position, raycastBoxSize, 0, -transform.up, raycastDistance, terrainLayer)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    // grounded detection visualisation
+    private void OnDrawGizmos(){
+        Gizmos.DrawWireCube(transform.position-transform.up*raycastDistance, raycastBoxSize);
+    }
+
+    // grounded detection collison method
+/*    private void OnCollisionEnter2D(Collision2D other){
         if(other.gameObject.CompareTag("Ground")){
-            grounded = true;
+            Vector3 normal = other.GetContact(0).normal;
+            if(normal == Vector3.up){
+                grounded = true;
+            }
         }
     }
 
@@ -66,7 +82,7 @@ public class PlayerScript : MonoBehaviour
         if(other.gameObject.CompareTag("Ground")){
             grounded = false;
         }
-    }
+    } */
 
     // flip model
     private void flip(){
@@ -75,8 +91,5 @@ public class PlayerScript : MonoBehaviour
         localScale.x *= -1f;
         transform.localScale = localScale;
     }
-    
-
-    
 
 }
