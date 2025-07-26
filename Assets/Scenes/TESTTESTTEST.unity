@@ -2558,7 +2558,7 @@ GameObject:
   - component: {fileID: 1315054544}
   - component: {fileID: 1315054548}
   m_Layer: 0
-  m_Name: SmallCharacterCollider
+  m_Name: SmallCharacterCollider (Inventory Manager)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
