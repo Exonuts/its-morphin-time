@@ -3,23 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-<<<<<<< HEAD
   tags: []
-=======
-  tags:
-  - box transformer
-  - pillar transformer
-  - balloon trasnformer
-  - Ground
-<<<<<<< HEAD
-  - Wall
-=======
-<<<<<<< HEAD
-=======
-  - Wall
->>>>>>> ccbb6f10b1805f71a186244d09f478cd4b27834a
->>>>>>> 3eeee263d3feb29376fe89129aba618b3542f866
->>>>>>> main
   layers:
   - Default
   - TransparentFX
@@ -27,15 +11,9 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
   - 
   - 
   - 
-=======
-  - Killer
-  - ground
-  - Obstacle
->>>>>>> 3eeee263d3feb29376fe89129aba618b3542f866
   - 
   - 
   - 
