@@ -12,10 +12,14 @@ TagManager:
   - balloon trasnformer
   - Ground
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   - Wall
 >>>>>>> ccbb6f10b1805f71a186244d09f478cd4b27834a
 >>>>>>> 3eeee263d3feb29376fe89129aba618b3542f866
+=======
+  - Wall
+>>>>>>> 200cf5b48e835875d68e7c52e0f4c8b214332e25
   layers:
   - Default
   - TransparentFX
