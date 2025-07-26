@@ -7,6 +7,7 @@ TagManager:
   - box transformer
   - pillar transformer
   - balloon trasnformer
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - UI
   - Killer
   - ground
-  - 
+  - Obstacle
   - 
   - 
   - 
