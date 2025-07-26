@@ -63,7 +63,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void GoPlay() {
-        SceneManager.LoadScene("Scenes/LevelOne"); // this is temporary, i can send it somewhere else if need be
+        SceneManager.LoadScene("Scenes/HugoScene"); // this is temporary, i can send it somewhere else if need be
         Debug.Log("play");
     }
     
@@ -86,7 +86,6 @@ public class MainMenu : MonoBehaviour {
         settingsText.fontStyle = FontStyles.Normal;
         thirdText.color = Color.black;
         thirdText.fontStyle = FontStyles.Normal;
-
     }
 
     public void SetSettingsSelected(){
