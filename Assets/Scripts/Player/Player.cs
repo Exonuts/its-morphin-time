@@ -38,7 +38,7 @@ public class PlayerScript : MonoBehaviour{
 
         // jump
         if (Input.GetButtonDown("Jump") && isGrounded()){
-            rb.AddForce(new Vector2(rb.velocity.x,jumpForce*240));
+            rb.AddForce(new Vector2(rb.velocity.x,jumpForce*100));
         }
 
         // Running and jumping animation
@@ -54,6 +54,12 @@ public class PlayerScript : MonoBehaviour{
             flip();
         }else if(input < 0 && isFacingRight){
             flip();
+        }
+
+        // fall death
+        if (rb.position.y <= -7){
+            rb.velocity = Vector2.zero;
+            rb.position = respawnPoint.position;
         }
     }
 
@@ -71,7 +77,7 @@ public class PlayerScript : MonoBehaviour{
         Gizmos.DrawWireCube(transform.position-transform.up*raycastDistance, raycastBoxSize);
     }
 
-    // player death
+    // touch danger death
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
             rb.velocity = Vector2.zero;

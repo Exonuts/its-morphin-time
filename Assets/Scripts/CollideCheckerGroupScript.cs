@@ -125,8 +125,6 @@ public class NewBehaviourScript : MonoBehaviour
                 return;
             }
 
-            
-
             if (newFormIndex == pillarFormIndex && spawnRotation == Quaternion.identity)
             {
                 spawnPos.y += verticalPillarYOffset;
@@ -140,8 +138,6 @@ public class NewBehaviourScript : MonoBehaviour
             newPlayer.tag = "Player";
             playerTransform = newPlayer.transform;
             currentFormIndex = newFormIndex;
-        
-            
 
     }
 
