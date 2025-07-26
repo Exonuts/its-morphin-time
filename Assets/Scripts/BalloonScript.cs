@@ -11,6 +11,7 @@ public class BalloonScript : MonoBehaviour
 
     public LayerMask killer;
     public float checkRadius = 0.4f;
+    private float decceleratingVelocity = 0f;
 
     bool isDead = false;
 
@@ -26,13 +27,15 @@ public class BalloonScript : MonoBehaviour
 
         Collider2D hit = Physics2D.OverlapCircle(transform.position,checkRadius,killer);
 
-        if(hit != null) {
+        float input = Input.GetAxisRaw("Horizontal");
+        
+        float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
+
+        if(hit != null || Input.GetKey(KeyCode.Space)) {
 
             isDead = true;
+            decceleratingVelocity = clampedX;
         }
-
-        float input = Input.GetAxisRaw("Horizontal");
-        float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
 
         if(!isDead) {
 
@@ -48,7 +51,8 @@ public class BalloonScript : MonoBehaviour
         } else {
 
             transform.localScale = new Vector3(0.3f,0.3f,0.3f);
-            rb.velocity = new Vector2(0f,-5f);
+            rb.velocity = new Vector2(decceleratingVelocity,-5f);
+            decceleratingVelocity *= 0.98f;
         }
         
     }

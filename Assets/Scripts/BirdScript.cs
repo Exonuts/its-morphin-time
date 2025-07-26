@@ -8,7 +8,7 @@ public class BirdScript : MonoBehaviour
     private Rigidbody2D rb;
     public LayerMask target;
     public Sprite[] birdAnimations;
-    public float searchRadius = 60f;
+    public float searchRadius = 20f;
     private bool idle = false;
     private bool needsNewAnimation = true;
     // Start is called before the first frame update
@@ -22,7 +22,6 @@ public class BirdScript : MonoBehaviour
     void Update()
     {
         Collider2D isInProximity = Physics2D.OverlapCircle(transform.position,searchRadius,target);
-
         if(isInProximity != null) {
 
             rb.gravityScale = 0;
@@ -67,6 +66,14 @@ public class BirdScript : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Vector3 currPos = transform.position;
         float totalDist = Random.Range(-0.5f,0.5f);
+
+        if(totalDist < 0f) {
+
+            transform.rotation = Quaternion.Euler(0f,180f,0f);
+        } else {
+
+            transform.rotation = Quaternion.Euler(0f,0f,0f);
+        }
 
         for (int i = 0; i < 10; i++) {
 
