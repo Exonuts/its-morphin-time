@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    //public float moveSpeed = 5f;
-    public float moveForce;
-    public float maxSpeed;
+    public float moveSpeed;
     public float jumpForce;
+
     private bool grounded;
     private Rigidbody2D rb;
+
     private Animator anim;
+    private bool isFacingRight;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        // make character face right
+        isFacingRight = false;
+        flip();
     }
 
     void Update()
@@ -25,12 +30,8 @@ public class PlayerScript : MonoBehaviour
 
         float input = Input.GetAxisRaw("Horizontal");
 
-        // Apply force continuously based on input
-        rb.AddForce(Vector2.right * input * moveForce, ForceMode2D.Force);
-
-        // Clamp velocity AFTER applying force
-        float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
-        rb.velocity = new Vector2(clampedX, rb.velocity.y);
+        // Apply velocity continuously based on input
+        rb.velocity = new Vector2(input*moveSpeed, rb.velocity.y);
 
         // jump
         if (Input.GetButtonDown("Jump") && grounded)
@@ -38,11 +39,18 @@ public class PlayerScript : MonoBehaviour
             rb.AddForce(new Vector2(rb.velocity.x,jumpForce*10));
         }
 
-        // Animation
+        // Running animation
         if (input != 0){
             anim.SetBool("isRunning",true);
         }else{
             anim.SetBool("isRunning",false);
+        }
+
+        // flipping model
+        if (input > 0 && !isFacingRight){
+            flip();
+        }else if(input < 0 && isFacingRight){
+            flip();
         }
     }
 
@@ -57,6 +65,14 @@ public class PlayerScript : MonoBehaviour
         if(other.gameObject.CompareTag("Ground")){
             grounded = false;
         }
+    }
+
+    // flip model
+    private void flip(){
+        isFacingRight = !isFacingRight;
+        Vector3 localScale = transform.localScale;
+        localScale.x *= -1f;
+        transform.localScale = localScale;
     }
     
 
