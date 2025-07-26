@@ -28,7 +28,7 @@ public class PlayerScript : MonoBehaviour
         // float input = Input.GetAxisRaw("Horizontal");
         // rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
 
-        float input = Input.GetAxisRaw("Horizontal");
+        float input = Input.GetAxis("Horizontal");
 
         // Apply velocity continuously based on input
         rb.velocity = new Vector2(input*moveSpeed, rb.velocity.y);
@@ -36,15 +36,16 @@ public class PlayerScript : MonoBehaviour
         // jump
         if (Input.GetButtonDown("Jump") && grounded)
         {
-            rb.AddForce(new Vector2(rb.velocity.x,jumpForce*10));
+            rb.AddForce(new Vector2(rb.velocity.x,jumpForce*240));
         }
 
-        // Running animation
+        // Running and jumping animation
         if (input != 0){
             anim.SetBool("isRunning",true);
         }else{
             anim.SetBool("isRunning",false);
         }
+        anim.SetBool("isJumping",!grounded);
 
         // flipping model
         if (input > 0 && !isFacingRight){
