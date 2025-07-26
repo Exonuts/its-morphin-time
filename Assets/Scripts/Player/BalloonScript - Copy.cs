@@ -10,7 +10,7 @@ public class BalloonScript : MonoBehaviour
     private Rigidbody2D rb;
 
     public LayerMask killer;
-    public float checkRadius = 0.4f;
+    public float checkRadius = 0.8f;
     private float decceleratingVelocity = 0f;
 
     public bool isDead = false;
@@ -28,7 +28,7 @@ public class BalloonScript : MonoBehaviour
         // rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
 
         Collider2D hit = Physics2D.OverlapCircle(transform.position,checkRadius,killer);
-
+        Debug.Log(hit);
         float input = Input.GetAxisRaw("Horizontal");
         
         float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
@@ -56,7 +56,7 @@ public class BalloonScript : MonoBehaviour
             rb.velocity = new Vector2(decceleratingVelocity,-5f);
             decceleratingVelocity *= 0.98f;
 
-            if(transform.position.y < -6f) {
+            if(transform.position.y < -6f || Input.GetKey(KeyCode.R)) {
 
                 if(!regenerating) {
 
@@ -78,8 +78,5 @@ public class BalloonScript : MonoBehaviour
         regenerating = false;
 
     }
-    
-
-    
 
 }
