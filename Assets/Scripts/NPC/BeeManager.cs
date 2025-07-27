@@ -17,7 +17,7 @@ public class BeeManager : MonoBehaviour
 
     private List<GameObject> bees = new List<GameObject>();
 
-    public float searchRadius = 7f;
+    public float searchRadius = 4f;
 
     void Awake() {
 
