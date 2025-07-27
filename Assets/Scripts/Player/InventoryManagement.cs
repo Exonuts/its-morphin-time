@@ -97,11 +97,11 @@ public class InventoryManagement : MonoBehaviour {
             if (selected == 1) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
                 return;
-            } else if (!ccgs.CanSpawn(inventory[0])){ // if not enough space
-                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-                return;
             } else if (onCD[0]){
                 noticeText.text = "This form is on cooldown";
+                return;
+            } else if (!ccgs.CanSpawn(inventory[0])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
                 return;
             }  else { // if okay
                 selected = 1; // switch
@@ -113,11 +113,11 @@ public class InventoryManagement : MonoBehaviour {
             if (selected == 2) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
                 return;
-            } else if (!ccgs.CanSpawn(inventory[1])){ // if not enough space
-                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-                return;
             } else if (onCD[1]){
                 noticeText.text = "This form is on cooldown";
+                return;
+            }  else if (!ccgs.CanSpawn(inventory[1])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
                 return;
             }  else { // if okay
                 selected = 2; // switch
@@ -129,13 +129,13 @@ public class InventoryManagement : MonoBehaviour {
             if (selected == 3) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
                 return;
-            } else if (!ccgs.CanSpawn(inventory[2])){ // if not enough space
-                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-                return;
             } else if (onCD[2]){
                 noticeText.text = "This form is on cooldown"; // complain
                 return;
-            }  else { // if okay
+            }   else if (!ccgs.CanSpawn(inventory[2])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+                return;
+            } else { // if okay
                 selected = 3; // switch
                 noticeText.text = "";
                 onCD[2] = true;
@@ -145,11 +145,11 @@ public class InventoryManagement : MonoBehaviour {
             if (selected == 4) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
                 return;
-            } else if (!ccgs.CanSpawn(inventory[3])){ // if not enough space
-                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-                return;
             } else if (onCD[3]){
                 noticeText.text = "This form is on cooldown";
+                return;
+            } else if (!ccgs.CanSpawn(inventory[3])){ // if not enough space
+                noticeText.text = "Cannot swap forms here. Not enough space"; // complain
                 return;
             } else { // if okay
                 selected = 4; // switch
