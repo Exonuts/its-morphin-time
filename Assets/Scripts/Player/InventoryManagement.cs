@@ -44,11 +44,11 @@ public class InventoryManagement : MonoBehaviour {
 
     #region inventory   
     public TMP_Text noticeText;
-    int[] inventory = new int[4]; // four slots
+    public int[] inventory = new int[4]; // four slots
     // index 0 will always be player and cannot change
     // for now level 1-2 will give you 1 index unlock slot, levels onwords tbd
     // int 1 = box, int 2 = pillar int 3 = balloon if index 1 is 1 the second form is box
-    int level = 0; // at different levels you unlock the ability to hold more forms
+    int level = 10; // at different levels you unlock the ability to hold more forms
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
