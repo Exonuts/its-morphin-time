@@ -11,9 +11,8 @@ public class CameraFollowing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Camera.main.orthographicSize = 18f;
+        Camera.main.orthographicSize = 10f;
         target = GameObject.FindGameObjectWithTag("Player");
-        StartCoroutine(minimise());
 
     }
 
@@ -30,6 +29,7 @@ public class CameraFollowing : MonoBehaviour
         }
     }
 
+    /*
     public IEnumerator minimise() {
 
         yield return new WaitForSeconds(1f);
@@ -41,4 +41,5 @@ public class CameraFollowing : MonoBehaviour
         }
 
     }
+    */
 }
