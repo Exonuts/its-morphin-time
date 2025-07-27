@@ -9,6 +9,9 @@ public class BallCharacterScript : MonoBehaviour
     public float maxSpeed;
     private Rigidbody2D rb;
 
+    // Death and respawn
+    public Transform respawnPoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -16,6 +19,7 @@ public class BallCharacterScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
         // float input = Input.GetAxisRaw("Horizontal");
         // rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
 
@@ -33,6 +37,12 @@ public class BallCharacterScript : MonoBehaviour
     }
     
 
-    
+    // touch danger death
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            rb.velocity = Vector2.zero;
+            rb.position = respawnPoint.position;
+        }
+    }
 
 }
