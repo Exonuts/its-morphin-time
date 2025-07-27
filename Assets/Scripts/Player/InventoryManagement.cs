@@ -8,30 +8,27 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryManagement : MonoBehaviour {
+
     public bool isTouchingWall = false;
     public TMP_Text testTest;
-    #region in game hud
-    public Image overlay;
+
+    #region pause menu variables
+    private int menuSelected = 0;
+    public GameObject pauseMenu;
+    public TMP_Text resumeText;
+    public TMP_Text menuText;
+    Boolean isPaused = false;
+    #endregion
     
+    #region images and sprites
+    public Image overlay;
     public Sprite selectedOne;
     public Sprite selectedTwo;
     public Sprite selectedThree;
     public Sprite selectedFour;
 
     public int selected = 1;
-    #endregion
 
-    #region pause menu variables
-    private int menuSelected = 0;
-    public TMP_Text resumeText;
-    public TMP_Text menuText;
-
-    public GameObject pauseMenu;
-
-    Boolean isPaused = false;
-    #endregion
-    
-    #region images and sprites
     public Image formOne;
     public Image formTwo;
     public Image formThree;
@@ -45,19 +42,28 @@ public class InventoryManagement : MonoBehaviour {
     public Sprite ball;
     #endregion 
 
-    #region inventory
+    #region inventory   
     public TMP_Text noticeText;
-    public int[] inventory = new int[4]; // four slots
+    int[] inventory = new int[4]; // four slots
     // index 0 will always be player and cannot change
     // for now level 1-2 will give you 1 index unlock slot, levels onwords tbd
     // int 1 = box, int 2 = pillar int 3 = balloon if index 1 is 1 the second form is box
-    public int level = 0; // at different levels you unlock the ability to hold more forms
-
+    int level = 0; // at different levels you unlock the ability to hold more forms
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
     #endregion
     
+    #region cooldowns
+    int[] cds = {0,10,10,10};
+    public Boolean[] onCD = {false,false,false,false};
+
+    IEnumerator Cooldown(int which){
+        yield return new WaitForSeconds(cds[which]);
+        onCD[which] = false;
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
     } // HAHAHA I CAN PUT IT ALL ON ONE LINE
@@ -67,8 +73,10 @@ public class InventoryManagement : MonoBehaviour {
         #region pause menu update things
         if (isPaused){ // sets pause menu visibility based on if the game is paused or not
             pauseMenu.SetActive(true);
+            Time.timeScale = 0;
         } else{
             pauseMenu.SetActive(false);
+            Time.timeScale = 1;
         }
 
         switch(menuSelected){
@@ -84,38 +92,66 @@ public class InventoryManagement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1) && !swapping){ // looks for key presses to detect when key pressed
             if (selected == 1) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
+                return;
+            } else if (onCD[0]){
+                noticeText.text = "This form is on cooldown";
+                return;
             } else if (!ccgs.CanSpawn(inventory[0])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-            } else { // if okay
+                return;
+            }  else { // if okay
                 selected = 1; // switch
                 noticeText.text = "";
+                onCD[0] = true;
+                StartCoroutine(Cooldown(0));
             }
         } else if (Input.GetKeyDown(KeyCode.Alpha2) && inventory[1] != 0 && !swapping){ // if not swapping, and inventory not empty
             if (selected == 2) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
-            } else if (!ccgs.CanSpawn(inventory[1])){ // if not enough space
+                return;
+            } else if (onCD[1]){
+                noticeText.text = "This form is on cooldown";
+                return;
+            }  else if (!ccgs.CanSpawn(inventory[1])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-            } else { // if okay
+                return;
+            }  else { // if okay
                 selected = 2; // switch
                 noticeText.text = "";
+                onCD[1] = true;
+                StartCoroutine(Cooldown(1));
             }
         } else if (Input.GetKeyDown(KeyCode.Alpha3)&& inventory[2] != 0 && !swapping){
             if (selected == 3) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
-            } else if (!ccgs.CanSpawn(inventory[2])){ // if not enough space
+                return;
+            } else if (onCD[2]){
+                noticeText.text = "This form is on cooldown"; // complain
+                return;
+            }   else if (!ccgs.CanSpawn(inventory[2])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+                return;
             } else { // if okay
                 selected = 3; // switch
                 noticeText.text = "";
+                onCD[2] = true;
+                StartCoroutine(Cooldown(2));
             }
         } else if (Input.GetKeyDown(KeyCode.Alpha4) && inventory[3] != 0 && !swapping){ // key pressed, not taking a form, 
             if (selected == 4) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
+                return;
+            } else if (onCD[3]){
+                noticeText.text = "This form is on cooldown";
+                return;
             } else if (!ccgs.CanSpawn(inventory[3])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+                return;
             } else { // if okay
                 selected = 4; // switch
                 noticeText.text = "";
+                onCD[3] = true;
+                StartCoroutine(Cooldown(3));
             }
         } 
 
@@ -160,6 +196,10 @@ public class InventoryManagement : MonoBehaviour {
             noticeText.text = "you are not high enough level yet!";
         }
         
+        if (Input.GetKeyDown(KeyCode.L)){
+            level++;
+        }
+
         UpdateEquippedForms();
         UpdateFormList();
         AvailSlot();
@@ -310,6 +350,9 @@ public class InventoryManagement : MonoBehaviour {
                 Debug.Log("this should never happen");
                 break;
         }
+        if (onCD[0]){
+            testTest.text += " on CD;";
+        }
         testTest.text += "\n";
         switch (inventory[1]){
             case 0:
@@ -327,6 +370,9 @@ public class InventoryManagement : MonoBehaviour {
             case 4:
                 testTest.text += "Form2 = ball";
                 break;
+        }
+        if (onCD[1]){
+            testTest.text += " on CD;";
         }
         testTest.text += "\n";
         switch (inventory[2]){
@@ -346,6 +392,9 @@ public class InventoryManagement : MonoBehaviour {
                 testTest.text += "Form3 = ball";
                 break;
         }
+        if (onCD[2]){
+            testTest.text += " on CD;";
+        }
         testTest.text += "\n";
         switch (inventory[3]){
             case 0:
@@ -363,6 +412,9 @@ public class InventoryManagement : MonoBehaviour {
             case 4:
                 testTest.text += "Form4 = ball";
                 break;
+        }
+        if (onCD[3]){
+            testTest.text += " on CD;";
         }
         testTest.text += "\nLevel:" + level;
         testTest.text += "\nSlots:" + AvailSlot();
