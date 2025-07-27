@@ -55,14 +55,6 @@ public class BeeScript : MonoBehaviour
 
             }
 
-            BalloonScript b = objectTarget.GetComponent<BalloonScript>();
-
-            if(b.regenerating == true) {
-
-                BeeManager.Instance.beesSummoned = false;
-                Destroy(gameObject);
-            }
-
         } else {
 
             Vector2 direction = beehive.transform.position - transform.position;

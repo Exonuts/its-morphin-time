@@ -37,9 +37,20 @@ public class BeeManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Collider2D isInProximity = Physics2D.OverlapCircle(transform.position,searchRadius,target);
+        //Collider2D isInProximity = Physics2D.OverlapCircle(transform.position,searchRadius,target);
+        bool isInProximity = false;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, searchRadius);
 
-        if(isInProximity != null) {
+        foreach (Collider2D hit in hits)
+        {
+            if (hit.CompareTag("Player"))
+            {
+                // Do something with tagged object
+                isInProximity = true;
+            }
+        }
+
+        if(isInProximity) {
 
             if(!beesSummoned) {
 
@@ -49,7 +60,7 @@ public class BeeManager : MonoBehaviour
 
                     Debug.Log("Summoned");
                     GameObject beeToAdd = Instantiate(Resources.Load<GameObject>("Bee"),new Vector3(13.21f,1.4f,0f),Quaternion.Euler(0f,0f,0f));
-                    float scale = Random.Range(0.02f,0.1f);
+                    float scale = Random.Range(0.3f,0.7f);
                     beeToAdd.transform.localScale = new Vector3(scale,scale,scale);
                     string targetLayerName = "Killer";
                     int layer = LayerMask.NameToLayer(targetLayerName);

@@ -23,23 +23,26 @@ public class BalloonScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        respawnPoint = GameObject.Find("RespawnPoint").transform;
+        respawnPoint = GameObject.Find("Respawn").transform;
         
     }
 
     void FixedUpdate()
     {
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
+
         // float input = Input.GetAxisRaw("Horizontal");
         // rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
 
         Collider2D hit = Physics2D.OverlapCircle(transform.position,checkRadius,killer);
+        
         float input = Input.GetAxisRaw("Horizontal");
+        Debug.Log(input);
         
         float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
 
         if(hit != null || Input.GetKey(KeyCode.Space)) {
-
+            Debug.Log(hit.name);
             transform.localScale = new Vector3(0.3f,0.3f,0.3f);
             isDead = true;
             decceleratingVelocity = clampedX;
