@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pillarPrefab: {fileID: 3883910038234701182, guid: f1d83a8f1230f65079717886e1626d96, type: 3}
-  spawnPoint: {x: -16, y: 4}
+  spawnPoint: {x: -3, y: 3}
 --- !u!1 &3252270090935018546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1871,7 +1871,10 @@ MonoBehaviour:
   balloon: {fileID: 21300000, guid: 1a4683d2f6ff9b84484d6d0918bd0bad, type: 3}
   ball: {fileID: 21300000, guid: 4980b8edd9dc0feb1bc7ccc28e31ebfc, type: 3}
   noticeText: {fileID: 1363836789501333454}
+<<<<<<< HEAD
+=======
   inventory: 00000000020000000300000004000000
+>>>>>>> a40ae2005edc7e07f4b4942ef8be38d28ba68d8d
   onCD: 00000000
 --- !u!1 &6595834317432787360
 GameObject:
