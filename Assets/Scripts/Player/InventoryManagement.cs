@@ -53,7 +53,7 @@ public class InventoryManagement : MonoBehaviour {
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
 
-    public int deathCount = -1;
+    public int deathCount;
     public Boolean deathCountOn = false;
     public TMP_Text onOff;
     public TMP_Text deathCountDisplay;
@@ -71,8 +71,7 @@ public class InventoryManagement : MonoBehaviour {
     #endregion
 
     // Start is called before the first frame update
-    void Start() {
-        noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
+    void Start() { deathCount = -1; noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
     } // HAHAHA I CAN PUT IT ALL ON ONE LINE
 
     public void ToggleDeathCount(){
