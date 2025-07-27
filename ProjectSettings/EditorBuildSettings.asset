@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ethanlevel6.unity
     guid: cfb9def75f3cf4673b56c13dae1be3ed
+  - enabled: 1
+    path: Assets/Scenes/WinLevel.unity
+    guid: d79ef9acb619e004db905beb9c0b795c
   m_configObjects: {}

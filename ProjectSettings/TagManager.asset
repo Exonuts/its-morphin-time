@@ -8,7 +8,7 @@ TagManager:
   - PlayerManager
   - Enemy
   - EndingPoint
-  - MainMenuSettings
+  - settingsButton
   layers:
   - Default
   - TransparentFX
