@@ -23,6 +23,7 @@ public class BalloonScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        respawnPoint = GameObject.Find("RespawnPoint").transform;
         
     }
 
@@ -72,6 +73,7 @@ public class BalloonScript : MonoBehaviour
         }
         
     }
+
 
     public IEnumerator regenerate() {
 

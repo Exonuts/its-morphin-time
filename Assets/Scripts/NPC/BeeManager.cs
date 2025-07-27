@@ -15,8 +15,7 @@ public class BeeManager : MonoBehaviour
 
     public GameObject beeFolder;
 
-    public float searchRadius = 20f;
-
+    public float searchRadius = 7f;
 
     void Awake() {
 
@@ -49,10 +48,12 @@ public class BeeManager : MonoBehaviour
                 for (int i = 0; i < 100; i++) {
 
                     Debug.Log("Summoned");
-                    GameObject beeToAdd = Instantiate(Resources.Load<GameObject>("Bee"),new Vector3(-7f,-4f,0f),Quaternion.Euler(0f,0f,0f));
-                    float scale = Random.Range(0.1f,0.25f);
+                    GameObject beeToAdd = Instantiate(Resources.Load<GameObject>("Bee"),new Vector3(13.21f,1.4f,0f),Quaternion.Euler(0f,0f,0f));
+                    float scale = Random.Range(0.02f,0.1f);
                     beeToAdd.transform.localScale = new Vector3(scale,scale,scale);
-
+                    string targetLayerName = "Killer";
+                    int layer = LayerMask.NameToLayer(targetLayerName);
+                    beeToAdd.layer = layer;
                     beeToAdd.transform.SetParent(beeFolder.transform);
                 }
 

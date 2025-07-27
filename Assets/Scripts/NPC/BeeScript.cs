@@ -37,8 +37,23 @@ public class BeeScript : MonoBehaviour
 
             Vector2 direction = objectTarget.transform.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle);
+            if(objectTarget.transform.position.x < transform.position.x) {
+
+                transform.rotation = Quaternion.Euler(0, 0, angle+180);
+            } else {
+
+                transform.rotation = Quaternion.Euler(0, 180, angle);
+                
+            }
             transform.position = Vector3.MoveTowards(transform.position, objectTarget.transform.position, speed * Time.deltaTime);
+
+            if(approachingObject != null) {
+
+                Vector3 directionAway = transform.position - approachingObject.gameObject.transform.position;
+                Vector3 targetPosition = transform.position + directionAway.normalized;
+                transform.position = Vector3.MoveTowards(transform.position,targetPosition,speed * Time.deltaTime);
+
+            }
 
             BalloonScript b = objectTarget.GetComponent<BalloonScript>();
 
@@ -52,7 +67,16 @@ public class BeeScript : MonoBehaviour
 
             Vector2 direction = beehive.transform.position - transform.position;
             float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.Euler(0, 0, angle+180f);
+
+            if(beehive.transform.position.x < transform.position.x) {
+
+                transform.rotation = Quaternion.Euler(0, 0, angle+180);
+            } else {
+
+                transform.rotation = Quaternion.Euler(0, 180, angle);
+                
+            }
+           
             transform.position = Vector3.MoveTowards(transform.position, beehive.transform.position, speed * Time.deltaTime);
             
             if(approachingObject != null) {

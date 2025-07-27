@@ -64,7 +64,7 @@ public class CollideCheckerGroupScript : MonoBehaviour {
     public bool CanSpawn(int newFormIndex) {
         bool cansSpawn = false; // until confirmed can spawn it cant
 
-        Quaternion spawnRotation = Quaternion.identity; 
+        Quaternion spawnRotation = Quaternion.Euler(0,0,0); 
         Vector2 spawnPos = transform.position; 
 
         switch (newFormIndex){
@@ -96,12 +96,11 @@ public class CollideCheckerGroupScript : MonoBehaviour {
         }
         // unless given otherwise by the swithc statement, you cannot spawn
         
-        /* Do we need this? because i think this kinda cooks it a bit
+        // Do we need this? because i think this kinda cooks it a bit
         if (newFormIndex == 2 && spawnRotation == Quaternion.identity) { // if pillar and spawn rotation (???)
             spawnPos.y += verticalPillarYOffset; 
             cansSpawn = true; // CAN SPAWN?
         }
-        */
 
         if (!cansSpawn) { // if cant spawn
             return false; // do nothing and return false, other script will take care of warnings
