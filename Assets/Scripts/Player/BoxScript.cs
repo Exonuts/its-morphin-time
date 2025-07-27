@@ -51,4 +51,12 @@ public class BoxScript : MonoBehaviour{
     private void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position-transform.up*raycastDistance, raycastBoxSize);
     }
+
+    // touch danger death
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            rb.velocity = Vector2.zero;
+            rb.position = respawnPoint.position;
+        }
+    }
 }

@@ -23,7 +23,7 @@ public class BalloonScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        respawnPoint = GameObject.Find("Respawn").transform;
+        //respawnPoint = GameObject.Find("Respawn").transform;
         
     }
 
@@ -42,7 +42,7 @@ public class BalloonScript : MonoBehaviour
         float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
 
         if(hit != null || Input.GetKey(KeyCode.Space)) {
-            Debug.Log(hit.name);
+
             transform.localScale = new Vector3(0.3f,0.3f,0.3f);
             isDead = true;
             decceleratingVelocity = clampedX;
