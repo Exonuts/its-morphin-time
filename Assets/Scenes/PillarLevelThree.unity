@@ -123139,7 +123139,7 @@ GameObject:
   - component: {fileID: 1587285378}
   - component: {fileID: 1587285377}
   m_Layer: 0
-  m_Name: FinishPoint
+  m_Name: FinishPoint1
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
