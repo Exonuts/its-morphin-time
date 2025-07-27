@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 
 public class BalloonScript : MonoBehaviour
 {
@@ -98,7 +100,13 @@ public class BalloonScript : MonoBehaviour
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
             audioManager.PlaySFX(deathSound);
-            BeeManager.Instance.removeBees();
+
+            try {
+
+                BeeManager.Instance.removeBees();
+            } catch(Exception ex) {}
+            
+            
             Destroy(gameObject);
         }
     }
