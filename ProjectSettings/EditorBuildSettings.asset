@@ -30,9 +30,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Ethanlevel3.unity
     guid: 3b374e4c3311e4b12b03a5dff8af8b75
   - enabled: 1
-    path: Assets/Scenes/Ethanlevel4.unity
-    guid: 4305bab859ae84e589f3729ff52ef70d
-  - enabled: 1
     path: Assets/Scenes/Ethanlevel5.unity
     guid: bd5876ef686d94f8b8f0889c3822be3e
+  - enabled: 1
+    path: Assets/Scenes/Ethanlevel4.unity
+    guid: 4305bab859ae84e589f3729ff52ef70d
   m_configObjects: {}
