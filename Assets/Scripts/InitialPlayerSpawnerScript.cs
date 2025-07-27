@@ -31,7 +31,7 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
 
     void Update(){
         if (SceneManager.GetActiveScene().buildIndex == 1){
-            Debug.Log(SceneManager.GetActiveScene().buildIndex);
+            //Debug.Log(SceneManager.GetActiveScene().buildIndex);
         } else {
             GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
             if (existingPlayer == null) {
