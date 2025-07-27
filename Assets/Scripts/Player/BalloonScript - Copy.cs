@@ -12,6 +12,10 @@ public class BalloonScript : MonoBehaviour
     public LayerMask killer;
     public float checkRadius = 0.8f;
     private float decceleratingVelocity = 0f;
+    public AudioClip deathSound;
+    public GameObject manager;
+
+    private AudioManager audioManager;
 
     public bool isDead = false;
     public bool regenerating = false;
@@ -23,8 +27,9 @@ public class BalloonScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        respawnPoint = GameObject.Find("Respawn").transform;
-        
+        //respawnPoint = GameObject.Find("Respawn").transform;
+        manager = GameObject.Find("AudioManager");
+        audioManager = manager.GetComponent<AudioManager>();
     }
 
     void FixedUpdate()
@@ -42,7 +47,7 @@ public class BalloonScript : MonoBehaviour
         float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
 
         if(hit != null || Input.GetKey(KeyCode.Space)) {
-            Debug.Log(hit.name);
+
             transform.localScale = new Vector3(0.3f,0.3f,0.3f);
             isDead = true;
             decceleratingVelocity = clampedX;
@@ -90,9 +95,10 @@ public class BalloonScript : MonoBehaviour
 
     // touch danger death
     void OnCollisionEnter2D(Collision2D other){
+        
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
-            rb.velocity = Vector2.zero;
-            rb.position = respawnPoint.position;
+            audioManager.PlaySFX(deathSound);
+            Destroy(gameObject);
         }
     }
 

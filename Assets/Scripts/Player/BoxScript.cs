@@ -13,12 +13,17 @@ public class BoxScript : MonoBehaviour{
     public Vector2 raycastBoxSize;
     public float raycastDistance;
     public LayerMask terrainLayer;
+    public AudioClip deathSound;
+    public GameObject manager;
+    public AudioManager audioManager;
 
     // Death and respawn
     public Transform respawnPoint;
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
+        manager = GameObject.Find("AudioManager");
+        audioManager = manager.GetComponent<AudioManager>();
     }
 
     void Update(){
@@ -50,5 +55,13 @@ public class BoxScript : MonoBehaviour{
     // grounded detection visualisation
     private void OnDrawGizmos(){
         Gizmos.DrawWireCube(transform.position-transform.up*raycastDistance, raycastBoxSize);
+    }
+
+    // touch danger death
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            audioManager.PlaySFX(deathSound);
+            Destroy(gameObject);
+        }
     }
 }

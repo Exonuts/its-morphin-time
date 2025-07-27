@@ -1046,15 +1046,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTouchingWall: 0
   testTest: {fileID: 508205097}
+  pauseMenu: {fileID: 112793630}
+  resumeText: {fileID: 2124073187}
+  menuText: {fileID: 970443871}
   overlay: {fileID: 1185211584}
   selectedOne: {fileID: 21300000, guid: a4b9de462272f0197914bc56a362799a, type: 3}
   selectedTwo: {fileID: 21300000, guid: 98fc8a1a9aad67949a9ea867477bc366, type: 3}
   selectedThree: {fileID: 21300000, guid: db8ef0187a9c35e75a6a3bf503d37bcd, type: 3}
   selectedFour: {fileID: 21300000, guid: b1c63022d078df2c9b799b003e472856, type: 3}
   selected: 1
-  resumeText: {fileID: 2124073187}
-  menuText: {fileID: 970443871}
-  pauseMenu: {fileID: 112793630}
   formOne: {fileID: 1430947247}
   formTwo: {fileID: 1785088514}
   formThree: {fileID: 1139764540}
@@ -1067,7 +1067,7 @@ MonoBehaviour:
   ball: {fileID: 21300000, guid: 4980b8edd9dc0feb1bc7ccc28e31ebfc, type: 3}
   noticeText: {fileID: 1293832611}
   inventory: 00000000010000000300000004000000
-  level: 0
+  onCD: 00000000
 --- !u!114 &522983868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1157,6 +1157,37 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 257873938}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &811135142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 811135143}
+  m_Layer: 0
+  m_Name: Finish
+  m_TagString: Finish
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &811135143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811135142}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.37, y: 0.07, z: -0.0088918265}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850971418
 GameObject:
@@ -3136,7 +3167,7 @@ Transform:
   m_GameObject: {fileID: 1414026194}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.35, y: 0.638, z: 0}
+  m_LocalPosition: {x: 13.045, y: 0.638, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3693,7 +3724,7 @@ GameObject:
   - component: {fileID: 1646460105}
   m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7322,7 +7353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c7ffa6abb4c6a6479f7f28f97839e1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pillarPrefab: {fileID: 8672679963055242250, guid: 92606f333420d4ae28da72a3a4bfb4a3, type: 3}
+  toSpawn: {fileID: 0}
   spawnPoint: {x: -3, y: 0.5}
 --- !u!4 &1971295936
 Transform:
@@ -7973,3 +8004,4 @@ SceneRoots:
   - {fileID: 936622124}
   - {fileID: 1735777385}
   - {fileID: 1897463918}
+  - {fileID: 811135143}
