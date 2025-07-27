@@ -52,6 +52,12 @@ public class InventoryManagement : MonoBehaviour {
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
+
+    public int deathCount = 0;
+    public Boolean deathCountOn = false;
+    TMP_Text onOff;
+    public TMP_Text deathCountDisplay;
+    GameObject settingsMenu;
     #endregion
     
     #region cooldowns
@@ -65,11 +71,33 @@ public class InventoryManagement : MonoBehaviour {
     #endregion
 
     // Start is called before the first frame update
-    void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
+    void Start() {
+        onOff = GameObject.FindGameObjectWithTag("settingsButton").GetComponent<TMP_Text>();
+        noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
     } // HAHAHA I CAN PUT IT ALL ON ONE LINE
+
+    public void ToggleDeathCount(){
+        if(deathCountOn){
+            deathCountOn = false;
+        } else {
+            deathCountOn = true;
+        }
+    }
 
     // Update is called once per frame
     void Update() {
+        if (deathCountOn){
+            if (SceneManager.GetActiveScene().name == "MainMenu"){
+                onOff.text = "On";
+            }
+            deathCountDisplay.text = "Death Count: " + deathCount;
+        } else {
+            if (SceneManager.GetActiveScene().name == "MainMenu"){
+                onOff.text = "Off";
+            }
+            deathCountDisplay.text = "";
+        }
+
         level = SceneManager.GetActiveScene().buildIndex;
         #region pause menu update things
         if (isPaused){ // sets pause menu visibility based on if the game is paused or not
