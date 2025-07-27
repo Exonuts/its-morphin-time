@@ -894,7 +894,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerGroup
   m_TagString: PlayerManager
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1865,7 +1865,7 @@ MonoBehaviour:
   formThree: {fileID: 4584879926970799037}
   formFour: {fileID: 5887928212774432936}
   noSprite: {fileID: 21300000, guid: b898b096b2023a6e2ab9c108e20b5e52, type: 3}
-  slime: {fileID: 21300000, guid: 58b4f0084b7913a7c806da491b68e7d8, type: 3}
+  slime: {fileID: 21300000, guid: f4e60ed4999ebce4d85238934bb07ba2, type: 3}
   box: {fileID: 21300000, guid: 6f79c0e0f2dbd011c8b829f6c2b50379, type: 3}
   pillar: {fileID: 21300000, guid: 054b8481838c584d4ba2327f65e88bdd, type: 3}
   balloon: {fileID: 21300000, guid: a46ffb29767c27e88a09aa467c690053, type: 3}
@@ -2435,8 +2435,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b8b30685f16813041a57a207d836da14, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6f79c0e0f2dbd011c8b829f6c2b50379, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2644,8 +2644,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 58b4f0084b7913a7c806da491b68e7d8, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f4e60ed4999ebce4d85238934bb07ba2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

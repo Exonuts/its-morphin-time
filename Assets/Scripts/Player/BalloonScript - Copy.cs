@@ -34,7 +34,6 @@ public class BalloonScript : MonoBehaviour
         // rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
 
         Collider2D hit = Physics2D.OverlapCircle(transform.position,checkRadius,killer);
-        Debug.Log(hit);
         float input = Input.GetAxisRaw("Horizontal");
         
         float clampedX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);

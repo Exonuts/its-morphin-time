@@ -58,6 +58,16 @@ public class InventoryManagement : MonoBehaviour {
     CollideCheckerGroupScript ccgs;
     #endregion
     
+    #region cooldowns
+    int[] cds = {0,10,10,10};
+    public Boolean[] onCD = {false,false,false,false};
+    #endregion
+
+    IEnumerator Cooldown(int which){
+        yield return new WaitForSeconds(cds[which]);
+        onCD[which] = false;
+    }
+
     // Start is called before the first frame update
     void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
     } // HAHAHA I CAN PUT IT ALL ON ONE LINE
@@ -86,38 +96,66 @@ public class InventoryManagement : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Alpha1) && !swapping){ // looks for key presses to detect when key pressed
             if (selected == 1) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
+                return;
             } else if (!ccgs.CanSpawn(inventory[0])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-            } else { // if okay
+                return;
+            } else if (onCD[0]){
+                noticeText.text = "This form is on cooldown";
+                return;
+            }  else { // if okay
                 selected = 1; // switch
                 noticeText.text = "";
+                onCD[0] = true;
+                StartCoroutine(Cooldown(0));
             }
         } else if (Input.GetKeyDown(KeyCode.Alpha2) && inventory[1] != 0 && !swapping){ // if not swapping, and inventory not empty
             if (selected == 2) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
+                return;
             } else if (!ccgs.CanSpawn(inventory[1])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-            } else { // if okay
+                return;
+            } else if (onCD[1]){
+                noticeText.text = "This form is on cooldown";
+                return;
+            }  else { // if okay
                 selected = 2; // switch
                 noticeText.text = "";
+                onCD[1] = true;
+                StartCoroutine(Cooldown(1));
             }
         } else if (Input.GetKeyDown(KeyCode.Alpha3)&& inventory[2] != 0 && !swapping){
             if (selected == 3) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
+                return;
             } else if (!ccgs.CanSpawn(inventory[2])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
-            } else { // if okay
+                return;
+            } else if (onCD[2]){
+                noticeText.text = "This form is on cooldown"; // complain
+                return;
+            }  else { // if okay
                 selected = 3; // switch
                 noticeText.text = "";
+                onCD[2] = true;
+                StartCoroutine(Cooldown(2));
             }
         } else if (Input.GetKeyDown(KeyCode.Alpha4) && inventory[3] != 0 && !swapping){ // key pressed, not taking a form, 
             if (selected == 4) { // if currently active is trying to be swapped too
                 noticeText.text = "Cannot swap to currently active form"; // complain
+                return;
             } else if (!ccgs.CanSpawn(inventory[3])){ // if not enough space
                 noticeText.text = "Cannot swap forms here. Not enough space"; // complain
+                return;
+            } else if (onCD[3]){
+                noticeText.text = "This form is on cooldown";
+                return;
             } else { // if okay
                 selected = 4; // switch
                 noticeText.text = "";
+                onCD[3] = true;
+                StartCoroutine(Cooldown(3));
             }
         } 
 
