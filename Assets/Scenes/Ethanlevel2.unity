@@ -1853,15 +1853,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTouchingWall: 0
   testTest: {fileID: 373829708}
+  pauseMenu: {fileID: 1024630254}
+  resumeText: {fileID: 1459756725}
+  menuText: {fileID: 826576835}
   overlay: {fileID: 734196987}
   selectedOne: {fileID: 21300000, guid: a4b9de462272f0197914bc56a362799a, type: 3}
   selectedTwo: {fileID: 21300000, guid: 98fc8a1a9aad67949a9ea867477bc366, type: 3}
   selectedThree: {fileID: 21300000, guid: db8ef0187a9c35e75a6a3bf503d37bcd, type: 3}
   selectedFour: {fileID: 21300000, guid: b1c63022d078df2c9b799b003e472856, type: 3}
   selected: 1
-  resumeText: {fileID: 1459756725}
-  menuText: {fileID: 826576835}
-  pauseMenu: {fileID: 1024630254}
   formOne: {fileID: 1132253091}
   formTwo: {fileID: 759307952}
   formThree: {fileID: 106908787}
@@ -1874,7 +1874,7 @@ MonoBehaviour:
   ball: {fileID: 21300000, guid: 4980b8edd9dc0feb1bc7ccc28e31ebfc, type: 3}
   noticeText: {fileID: 1186270370}
   inventory: 00000000010000000300000004000000
-  level: 0
+  onCD: 00000000
 --- !u!114 &862780673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2239,7 +2239,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
