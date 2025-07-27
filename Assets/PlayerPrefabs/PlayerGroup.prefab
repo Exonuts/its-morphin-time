@@ -2217,6 +2217,7 @@ MonoBehaviour:
   noticeText: {fileID: 7789203985778602360}
   deathCount: 0
   deathCountOn: 0
+  onOff: {fileID: 0}
   deathCountDisplay: {fileID: 2249791562731544417}
   onCD: 00000000
 --- !u!1 &7847000061755092513
