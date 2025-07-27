@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 
 public class PillarCharacterScript : MonoBehaviour
 {
@@ -33,6 +35,11 @@ public class PillarCharacterScript : MonoBehaviour
     // touch danger death
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+
+            try {
+
+                BeeManager.Instance.removeBees();
+            } catch(Exception ex) {}
             Destroy(gameObject);
         }
     }

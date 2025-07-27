@@ -44,18 +44,18 @@ public class InventoryManagement : MonoBehaviour {
 
     #region inventory   
     public TMP_Text noticeText;
-    public int[] inventory = new int[4]; // four slots
+    int[] inventory = new int[4]; // four slots
     // index 0 will always be player and cannot change
     // for now level 1-2 will give you 1 index unlock slot, levels onwords tbd
     // int 1 = box, int 2 = pillar int 3 = balloon if index 1 is 1 the second form is box
-    int level = 10; // at different levels you unlock the ability to hold more forms
+    int level; // at different levels you unlock the ability to hold more forms
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
     #endregion
     
     #region cooldowns
-    int[] cds = {0,10,10,10};
+    int[] cds = {0,3,3,3};
     public Boolean[] onCD = {false,false,false,false};
 
     IEnumerator Cooldown(int which){
@@ -70,6 +70,7 @@ public class InventoryManagement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        level = SceneManager.GetActiveScene().buildIndex;
         #region pause menu update things
         if (isPaused){ // sets pause menu visibility based on if the game is paused or not
             pauseMenu.SetActive(true);
@@ -195,13 +196,8 @@ public class InventoryManagement : MonoBehaviour {
         } else if (Input.GetKeyDown(KeyCode.Alpha2) && swapping || Input.GetKeyDown(KeyCode.Alpha3) && swapping || Input.GetKeyDown(KeyCode.Alpha4) && swapping) {
             noticeText.text = "you are not high enough level yet!";
         }
-        
-        if (Input.GetKeyDown(KeyCode.L)){
-            level++;
-        }
 
         UpdateEquippedForms();
-        UpdateFormList();
         AvailSlot();
     }
 
@@ -249,92 +245,6 @@ public class InventoryManagement : MonoBehaviour {
                 overlay.sprite = selectedFour;
                 break;
         }
-        #endregion
-
-    }
-
-    void SwitchForm(int toSwitch){ // stops you if you already have the form, if you cannot learn enough forms, or if you need to swap it
-        for (int i = 0; i < 4; i++){
-            if (inventory[i] == toSwitch){
-                noticeText.text = "You already have this form";
-                return;
-            }
-        }
-        if (AvailSlot() == 0){
-            noticeText.text = "You cannot learn multiple forms at this time"; // the option for forms should only appear once unlocked, so you shouldnt really get this
-        } else {
-            String toSwitchtx = "";
-            int slotAdded = 0;
-            switch (toSwitch){
-                case 0:
-                    Debug.Log("How the fuck?"); // should never happen
-                    break;
-                case 1:
-                    toSwitchtx = "Box"; // if swapping box form
-                    break;
-                case 2:
-                    toSwitchtx = "Pillar"; // if swapping pillar form
-                    break;
-                case 3:
-                    toSwitchtx = "Balloon"; // if swapping balloon form
-                    break;
-                case 4:
-                    toSwitchtx = "Ball"; // if swapping ball form
-                    break;
-            }
-            switch(AvailSlot()){
-                case 1: // if you have one unlocked slot
-                    if (inventory[1] == 0){ // and that one slot is avaiable
-                        slotAdded = 1;
-                    } else {
-                        noticeText.text = "All available slots are full, please select a form to replace";
-                        swapping = true;
-                        return;
-                    }
-                    break;    
-                case 2: // if you have two unlocked slots
-                    if (inventory[1] == 0){ // and slot 1 is avaiable
-                        slotAdded = 1; // add to slot 1
-                    } else if (inventory[2] == 0) { // if slot 1 isnt avaialbe
-                        slotAdded = 2; // add to slot 2
-                    } else { // otherwise commence replace
-                        noticeText.text = "All avaiable slots are full, please select a form to replace";
-                        swapping = true;
-                        return;
-                    }
-                    break;      
-                case 3: // if you have two unlocked slots
-                    if (inventory[1] == 0){ // and slot 1 is avaiable
-                        slotAdded = 1; // add to slot 1
-                    } else if (inventory[2] == 0) { // if slot 1 isnt avaialbe
-                        slotAdded = 2; // add to slot 2
-                    } else if (inventory[3] == 0) { // if slot 1 and 2 arent avaialbe
-                        slotAdded = 3; // add to slot 3
-                    } else { // otherwise commence replace
-                        noticeText.text = "All avaiable slots are full, please select a form to replace";
-                        swapping = true;
-                        return;
-                    }
-                    break;      
-            }
-            inventory[slotAdded] = toSwitch;
-            noticeText.text = toSwitchtx + " form has been added to slot " + slotAdded;
-        }
-    }
-
-    int AvailSlot(){ // simple calculation for how many form slots you have based on what elvel the player is (subject to change)
-        if (level == 0){ // 0 no slots
-            return 0;
-        } else if (level <= 2){ // 1 2 | 1 extra
-            return 1;
-        } else if (level <= 4){ // 3 4 | 2 extra
-            return 2;
-        } else { // all slots unlocked
-            return 3;
-        }
-    }
-
-    void UpdateFormList(){ // testing function that displays text
         testTest.text = "";
         switch (inventory[0]){
             case 0:
@@ -418,6 +328,89 @@ public class InventoryManagement : MonoBehaviour {
         }
         testTest.text += "\nLevel:" + level;
         testTest.text += "\nSlots:" + AvailSlot();
+        #endregion
+
+    }
+
+    void SwitchForm(int toSwitch){ // stops you if you already have the form, if you cannot learn enough forms, or if you need to swap it
+        for (int i = 0; i < 4; i++){
+            if (inventory[i] == toSwitch){
+                noticeText.text = "You already have this form";
+                return;
+            }
+        }
+        if (AvailSlot() == 0){
+            noticeText.text = "You cannot learn multiple forms at this time"; // the option for forms should only appear once unlocked, so you shouldnt really get this
+        } else {
+            String toSwitchtx = "";
+            int slotAdded = 0;
+            switch (toSwitch){
+                case 0:
+                    Debug.Log("How the fuck?"); // should never happen
+                    break;
+                case 1:
+                    toSwitchtx = "Box"; // if swapping box form
+                    break;
+                case 2:
+                    toSwitchtx = "Pillar"; // if swapping pillar form
+                    break;
+                case 3:
+                    toSwitchtx = "Balloon"; // if swapping balloon form
+                    break;
+                case 4:
+                    toSwitchtx = "Ball"; // if swapping ball form
+                    break;
+            }
+            switch(AvailSlot()){
+                case 1: // if you have one unlocked slot
+                    if (inventory[1] == 0){ // and that one slot is avaiable
+                        slotAdded = 1;
+                    } else {
+                        noticeText.text = "All available slots are full, please select a form to replace";
+                        swapping = true;
+                        return;
+                    }
+                    break;    
+                case 2: // if you have two unlocked slots
+                    if (inventory[1] == 0){ // and slot 1 is avaiable
+                        slotAdded = 1; // add to slot 1
+                    } else if (inventory[2] == 0) { // if slot 1 isnt avaialbe
+                        slotAdded = 2; // add to slot 2
+                    } else { // otherwise commence replace
+                        noticeText.text = "All avaiable slots are full, please select a form to replace";
+                        swapping = true;
+                        return;
+                    }
+                    break;      
+                case 3: // if you have two unlocked slots
+                    if (inventory[1] == 0){ // and slot 1 is avaiable
+                        slotAdded = 1; // add to slot 1
+                    } else if (inventory[2] == 0) { // if slot 1 isnt avaialbe
+                        slotAdded = 2; // add to slot 2
+                    } else if (inventory[3] == 0) { // if slot 1 and 2 arent avaialbe
+                        slotAdded = 3; // add to slot 3
+                    } else { // otherwise commence replace
+                        noticeText.text = "All avaiable slots are full, please select a form to replace";
+                        swapping = true;
+                        return;
+                    }
+                    break;      
+            }
+            inventory[slotAdded] = toSwitch;
+            noticeText.text = toSwitchtx + " form has been added to slot " + slotAdded;
+        }
+    }
+
+    int AvailSlot(){ // simple calculation for how many form slots you have based on what elvel the player is (subject to change)
+        if (level <= 2){ // main menu, my scecne, 
+            return 0;
+        } else if (level <= 3){ // 1 2 | 1 extra
+            return 1;
+        } else if (level <= 5){ // 3 4 | 2 extra
+            return 2;
+        } else { // all slots unlocked
+            return 3;
+        }
     }
 
     #region switching and inventory functions
