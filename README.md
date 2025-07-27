@@ -4,4 +4,4 @@
 
 Objectives: To meet John Simulacrum.
 
-![alt-image] https://github.com/Exonuts/project-simulacrum/blob/main/Assets/Sprites/john2%201.png
+![alt text] (https://github.com/Exonuts/project-simulacrum/blob/main/Assets/Sprites/john2%201.png)
