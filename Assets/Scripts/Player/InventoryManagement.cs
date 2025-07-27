@@ -8,30 +8,27 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class InventoryManagement : MonoBehaviour {
+
     public bool isTouchingWall = false;
     public TMP_Text testTest;
-    #region in game hud
-    public Image overlay;
+
+    #region pause menu variables
+    private int menuSelected = 0;
+    public GameObject pauseMenu;
+    public TMP_Text resumeText;
+    public TMP_Text menuText;
+    Boolean isPaused = false;
+    #endregion
     
+    #region images and sprites
+    public Image overlay;
     public Sprite selectedOne;
     public Sprite selectedTwo;
     public Sprite selectedThree;
     public Sprite selectedFour;
 
     public int selected = 1;
-    #endregion
 
-    #region pause menu variables
-    private int menuSelected = 0;
-    public TMP_Text resumeText;
-    public TMP_Text menuText;
-
-    public GameObject pauseMenu;
-
-    Boolean isPaused = false;
-    #endregion
-    
-    #region images and sprites
     public Image formOne;
     public Image formTwo;
     public Image formThree;
@@ -45,14 +42,13 @@ public class InventoryManagement : MonoBehaviour {
     public Sprite ball;
     #endregion 
 
-    #region inventory
+    #region inventory   
     public TMP_Text noticeText;
-    public int[] inventory = new int[4]; // four slots
+    int[] inventory = new int[4]; // four slots
     // index 0 will always be player and cannot change
     // for now level 1-2 will give you 1 index unlock slot, levels onwords tbd
     // int 1 = box, int 2 = pillar int 3 = balloon if index 1 is 1 the second form is box
-    public int level = 0; // at different levels you unlock the ability to hold more forms
-
+    int level = 0; // at different levels you unlock the ability to hold more forms
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
@@ -61,12 +57,12 @@ public class InventoryManagement : MonoBehaviour {
     #region cooldowns
     int[] cds = {0,10,10,10};
     public Boolean[] onCD = {false,false,false,false};
-    #endregion
 
     IEnumerator Cooldown(int which){
         yield return new WaitForSeconds(cds[which]);
         onCD[which] = false;
     }
+    #endregion
 
     // Start is called before the first frame update
     void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
@@ -200,6 +196,10 @@ public class InventoryManagement : MonoBehaviour {
             noticeText.text = "you are not high enough level yet!";
         }
         
+        if (Input.GetKeyDown(KeyCode.L)){
+            level++;
+        }
+
         UpdateEquippedForms();
         UpdateFormList();
         AvailSlot();
@@ -350,6 +350,9 @@ public class InventoryManagement : MonoBehaviour {
                 Debug.Log("this should never happen");
                 break;
         }
+        if (onCD[0]){
+            testTest.text += " on CD;";
+        }
         testTest.text += "\n";
         switch (inventory[1]){
             case 0:
@@ -367,6 +370,9 @@ public class InventoryManagement : MonoBehaviour {
             case 4:
                 testTest.text += "Form2 = ball";
                 break;
+        }
+        if (onCD[1]){
+            testTest.text += " on CD;";
         }
         testTest.text += "\n";
         switch (inventory[2]){
@@ -386,6 +392,9 @@ public class InventoryManagement : MonoBehaviour {
                 testTest.text += "Form3 = ball";
                 break;
         }
+        if (onCD[2]){
+            testTest.text += " on CD;";
+        }
         testTest.text += "\n";
         switch (inventory[3]){
             case 0:
@@ -403,6 +412,9 @@ public class InventoryManagement : MonoBehaviour {
             case 4:
                 testTest.text += "Form4 = ball";
                 break;
+        }
+        if (onCD[3]){
+            testTest.text += " on CD;";
         }
         testTest.text += "\nLevel:" + level;
         testTest.text += "\nSlots:" + AvailSlot();
