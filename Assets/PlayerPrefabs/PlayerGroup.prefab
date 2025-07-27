@@ -2219,6 +2219,7 @@ MonoBehaviour:
   deathCountOn: 0
   onOff: {fileID: 0}
   deathCountDisplay: {fileID: 2249791562731544417}
+  UI: {fileID: 6036726174529796982}
   onCD: 00000000
 --- !u!1 &7847000061755092513
 GameObject:

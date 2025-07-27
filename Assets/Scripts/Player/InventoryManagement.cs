@@ -58,6 +58,7 @@ public class InventoryManagement : MonoBehaviour {
     public TMP_Text onOff;
     public TMP_Text deathCountDisplay;
     GameObject settingsMenu;
+    public GameObject UI;
     #endregion
     
     #region cooldowns
@@ -84,6 +85,11 @@ public class InventoryManagement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (SceneManager.GetActiveScene().name == "MainMenu"){
+            UI.SetActive(false);
+        } else {
+            UI.SetActive(true);
+        }
         if (deathCountOn){
             if (SceneManager.GetActiveScene().name == "MainMenu"){
                 onOff.text = "On";
