@@ -42736,7 +42736,7 @@ GameObject:
   - component: {fileID: 1435526135}
   - component: {fileID: 1435526134}
   m_Layer: 0
-  m_Name: JS
+  m_Name: JohnSimulacrumText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
