@@ -55,7 +55,7 @@ public class InventoryManagement : MonoBehaviour {
 
     public int deathCount = -1;
     public Boolean deathCountOn = false;
-    TMP_Text onOff;
+    public TMP_Text onOff;
     public TMP_Text deathCountDisplay;
     GameObject settingsMenu;
     #endregion
@@ -72,7 +72,6 @@ public class InventoryManagement : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        onOff = GameObject.FindGameObjectWithTag("settingsButton").GetComponent<TMP_Text>();
         noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
     } // HAHAHA I CAN PUT IT ALL ON ONE LINE
 
