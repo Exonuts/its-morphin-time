@@ -53,7 +53,7 @@ public class InventoryManagement : MonoBehaviour {
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
 
-    public int deathCount = -1;
+    public int deathCount = -2s;
     public Boolean deathCountOn = false;
     public TMP_Text onOff;
     public TMP_Text deathCountDisplay;
