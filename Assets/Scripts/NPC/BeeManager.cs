@@ -77,8 +77,10 @@ public class BeeManager : MonoBehaviour
 
     public void removeBees() {
 
+        Debug.Log("Removing");
         for (int i = 0; i < bees.Count; i++) {
 
+            Debug.Log("Removed Bee");
             Destroy(bees[i]);
 
         }

@@ -98,6 +98,7 @@ public class BalloonScript : MonoBehaviour
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
             audioManager.PlaySFX(deathSound);
+            BeeManager.Instance.removeBees();
             Destroy(gameObject);
         }
     }

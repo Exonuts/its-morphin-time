@@ -47,6 +47,7 @@ public class BallCharacterScript : MonoBehaviour
     // touch danger death
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            BeeManager.Instance.removeBees();
             audioManager.PlaySFX(deathSound);
             Destroy(gameObject);
         }
