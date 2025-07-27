@@ -154,7 +154,7 @@ public class InventoryManagement : MonoBehaviour {
                 StartCoroutine(Cooldown(3));
             }
         } 
-
+        
         if (Input.GetKeyDown(KeyCode.Escape)){
             if (isPaused){
                 Resume();
@@ -455,6 +455,12 @@ public class InventoryManagement : MonoBehaviour {
         if (trigger.CompareTag("Wall")) {
             isTouchingWall = true;
             //Debug.Log("SmallCharacterCollider isTouchingWall = true");
+        } else if (trigger.CompareTag("Enemy")){
+            if (inventory[selected] == 1){
+                Debug.Log("you are hiding");
+            } else {
+                Debug.Log("Die");
+            }
         }
     }
 
