@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InitialPlayerSpawnerScript : MonoBehaviour
 {
@@ -25,9 +26,13 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
     }
 
     void Update(){
-        GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
-        if (existingPlayer == null) {
-            StartRun();
+        if (SceneManager.GetActiveScene().buildIndex == 1){
+            Debug.Log("asdhubyahsjd");
+        } else {
+            GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
+            if (existingPlayer == null) {
+                StartRun();
+            }
         }
     }
 }
