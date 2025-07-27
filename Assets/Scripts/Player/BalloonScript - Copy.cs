@@ -98,8 +98,7 @@ public class BalloonScript : MonoBehaviour
         
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
             audioManager.PlaySFX(deathSound);
-            rb.velocity = Vector2.zero;
-            rb.position = respawnPoint.position;
+            Destroy(gameObject);
         }
     }
 

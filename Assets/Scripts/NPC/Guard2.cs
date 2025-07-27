@@ -8,8 +8,10 @@ public class Guard2 : MonoBehaviour
 
     public GameObject pointA;
     public GameObject pointB;
+
     private Rigidbody2D rb;
     private Transform destination;
+    
     public float speed;
     public float waitTime;
 
@@ -27,10 +29,10 @@ public class Guard2 : MonoBehaviour
         } else {
             rb.velocity = new Vector2(-speed, 0);
         }
-        if(Vector2.Distance(transform.position, destination.position) < 0.5f && destination == pointB.transform){
+        if(Vector2.Distance(transform.position, destination.position) < 1 && destination == pointB.transform){
             destination = pointA.transform;
         }
-        if(Vector2.Distance(transform.position, destination.position) < 0.5f && destination == pointA.transform){
+        if(Vector2.Distance(transform.position, destination.position) < 1 && destination == pointA.transform){
             destination = pointB.transform;
         }
     }

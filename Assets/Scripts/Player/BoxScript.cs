@@ -61,8 +61,7 @@ public class BoxScript : MonoBehaviour{
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
             audioManager.PlaySFX(deathSound);
-            rb.velocity = Vector2.zero;
-            rb.position = respawnPoint.position;
+            Destroy(gameObject);
         }
     }
 }

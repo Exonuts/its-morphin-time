@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerScript : MonoBehaviour{
@@ -33,7 +34,7 @@ public class PlayerScript : MonoBehaviour{
 
     void Update(){
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
-        endingPoint = GameObject.FindGameObjectWithTag("EndingPoint").transform;
+        endingPoint = GameObject.FindGameObjectWithTag("Finish").transform;
         float input = Input.GetAxis("Horizontal");
 
         // Apply velocity continuously based on input
@@ -83,8 +84,7 @@ public class PlayerScript : MonoBehaviour{
     // touch danger death
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
-            rb.velocity = Vector2.zero;
-            rb.position = respawnPoint.position;
+            Destroy(gameObject);
         }
     }
 

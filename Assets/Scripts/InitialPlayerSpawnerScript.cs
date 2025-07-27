@@ -4,24 +4,29 @@ using UnityEngine;
 
 public class InitialPlayerSpawnerScript : MonoBehaviour
 {
-    public GameObject pillarPrefab;
-    public Vector2 spawnPoint = Vector2.zero; // Set this directly in the Inspector
+    public GameObject toSpawn;
+    public Vector2 spawnPoint;
 
     void Start()
     {
-        StartRun();
-    }
-
-    public void StartRun()
-    {
-        // Remove any existing player
+        /* Remove any existing player
         GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
         if (existingPlayer != null) {
             Destroy(existingPlayer);
-        }
+        } */
+        spawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform.position;
+    }
 
-        // Spawn the pillar player at the specified position
-        GameObject newPlayer = Instantiate(pillarPrefab, spawnPoint, Quaternion.identity);
+    public void StartRun() {
+        // Spawn the form at the specified position
+        GameObject newPlayer = Instantiate(toSpawn, spawnPoint, Quaternion.identity);
         newPlayer.tag = "Player";
+    }
+
+    void Update(){
+        GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
+        if (existingPlayer == null) {
+            StartRun();
+        }
     }
 }
