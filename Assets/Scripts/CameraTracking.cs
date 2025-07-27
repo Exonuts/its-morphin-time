@@ -13,12 +13,12 @@ public class CameraTracking : MonoBehaviour
     void Start()
     {
         Camera.main.orthographicSize = size;
-        target = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        target = GameObject.FindGameObjectWithTag("Player");
         if (target != null)
         {
             Vector3 desiredPosition = target.transform.position + offset;

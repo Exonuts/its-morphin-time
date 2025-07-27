@@ -19,8 +19,7 @@ public class MainMenu : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
-        mainMenu.SetActive(true);
-        settingsMenu.SetActive(false);
+        GoBack();
     }
 
     // Update is called once per frame
@@ -69,7 +68,13 @@ public class MainMenu : MonoBehaviour {
     
 
     public void GoSettings() {
-        Debug.Log("This button really doesnt do anything");
+        mainMenu.SetActive(false);
+        settingsMenu.SetActive(true);
+    }
+
+    public void GoBack(){
+        mainMenu.SetActive(true);
+        settingsMenu.SetActive(false);
     }
 
 

@@ -16,6 +16,10 @@ public class BalloonScript : MonoBehaviour
     public bool isDead = false;
     public bool regenerating = false;
 
+
+    // Death and respawn
+    public Transform respawnPoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -24,6 +28,7 @@ public class BalloonScript : MonoBehaviour
 
     void FixedUpdate()
     {
+        respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
         // float input = Input.GetAxisRaw("Horizontal");
         // rb.velocity = new Vector2(input * moveSpeed, rb.velocity.y);
 
@@ -77,6 +82,14 @@ public class BalloonScript : MonoBehaviour
         isDead = false;
         regenerating = false;
 
+    }
+
+    // touch danger death
+    void OnCollisionEnter2D(Collision2D other){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            rb.velocity = Vector2.zero;
+            rb.position = respawnPoint.position;
+        }
     }
 
 }
