@@ -1585,7 +1585,7 @@ MonoBehaviour:
   canSmall: 0
   canPillarUp: 0
   canPillarLR: 0
-  verticalPillarYOffset: 2
+  verticalPillarYOffset: 3
   pillarLowOffset: -0.75
 --- !u!1 &6119503454007383834
 GameObject:

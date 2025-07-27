@@ -67,8 +67,10 @@ public class InventoryManagement : MonoBehaviour {
         #region pause menu update things
         if (isPaused){ // sets pause menu visibility based on if the game is paused or not
             pauseMenu.SetActive(true);
+            Time.timeScale = 0;
         } else{
             pauseMenu.SetActive(false);
+            Time.timeScale = 1;
         }
 
         switch(menuSelected){
