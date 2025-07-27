@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4980b8edd9dc0feb1bc7ccc28e31ebfc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c56fdadd05d56e3f5a866d5968375ce7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -163,4 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveForce: 2
   maxSpeed: 6
+  deathSound: {fileID: 0}
+  audioManager: {fileID: 0}
+  manager: {fileID: 0}
   respawnPoint: {fileID: 0}
