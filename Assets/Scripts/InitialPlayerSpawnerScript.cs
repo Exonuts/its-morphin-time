@@ -11,7 +11,6 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
 
     void Start()
     {
-        DontDestroyOnLoad(this);
         /* Remove any existing player
         GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
         if (existingPlayer != null) {
@@ -28,7 +27,7 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
 
     void Update(){
         if (SceneManager.GetActiveScene().buildIndex == 1){
-            Debug.Log("asdhubyahsjd");
+            Debug.Log(SceneManager.GetActiveScene().buildIndex);
         } else {
             GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
             if (existingPlayer == null) {
