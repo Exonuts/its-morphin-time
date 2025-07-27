@@ -45,7 +45,7 @@ public class MainMenu : MonoBehaviour {
                     break;
             }
         } else if (Input.GetKeyDown(KeyCode.L)){
-            SceneManager.LoadScene("TESTTESTTEST");
+            SceneManager.LoadScene("Scenes/LevelOne 1 test");
         }
 
         switch (selected){
@@ -62,7 +62,7 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void GoPlay() {
-        SceneManager.LoadScene("Scenes/HugoScene"); // this is temporary, i can send it somewhere else if need be
+        SceneManager.LoadScene("Scenes/LevelOne"); // this is temporary, i can send it somewhere else if need be
         Debug.Log("play");
     }
     
