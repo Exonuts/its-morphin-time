@@ -402,11 +402,11 @@ public class InventoryManagement : MonoBehaviour {
     }
 
     int AvailSlot(){ // simple calculation for how many form slots you have based on what elvel the player is (subject to change)
-        if (level <= 2){ // main menu, my scecne, 
+        if (level <= 1){ // main menu, my scecne, 
             return 0;
-        } else if (level <= 3){ // 1 2 | 1 extra
+        } else if (level <= 2){ // 1 2 | 1 extra
             return 1;
-        } else if (level <= 5){ // 3 4 | 2 extra
+        } else if (level <= 4){ // 3 4 | 2 extra
             return 2;
         } else { // all slots unlocked
             return 3;
