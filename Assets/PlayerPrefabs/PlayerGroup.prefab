@@ -894,7 +894,7 @@ GameObject:
   m_Layer: 0
   m_Name: PlayerGroup
   m_TagString: PlayerManager
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1128,8 +1128,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a46ffb29767c27e88a09aa467c690053, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1a4683d2f6ff9b84484d6d0918bd0bad, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1203,8 +1203,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 054b8481838c584d4ba2327f65e88bdd, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 73da3dc714b90a9e3965adfb8e1bc277, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1585,7 +1585,7 @@ MonoBehaviour:
   canSmall: 0
   canPillarUp: 0
   canPillarLR: 0
-  verticalPillarYOffset: 2
+  verticalPillarYOffset: 3
   pillarLowOffset: -0.75
 --- !u!1 &6119503454007383834
 GameObject:
@@ -1851,28 +1851,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTouchingWall: 0
   testTest: {fileID: 4499935516996301538}
+  pauseMenu: {fileID: 451676902375560584}
+  resumeText: {fileID: 608033247408200223}
+  menuText: {fileID: 1025443970310850286}
   overlay: {fileID: 6047846728113110192}
   selectedOne: {fileID: 21300000, guid: a4b9de462272f0197914bc56a362799a, type: 3}
   selectedTwo: {fileID: 21300000, guid: 98fc8a1a9aad67949a9ea867477bc366, type: 3}
   selectedThree: {fileID: 21300000, guid: db8ef0187a9c35e75a6a3bf503d37bcd, type: 3}
   selectedFour: {fileID: 21300000, guid: b1c63022d078df2c9b799b003e472856, type: 3}
   selected: 1
-  resumeText: {fileID: 608033247408200223}
-  menuText: {fileID: 1025443970310850286}
-  pauseMenu: {fileID: 451676902375560584}
   formOne: {fileID: 1555771132675408203}
   formTwo: {fileID: 110973602716942977}
   formThree: {fileID: 4584879926970799037}
   formFour: {fileID: 5887928212774432936}
-  noSprite: {fileID: 21300000, guid: b898b096b2023a6e2ab9c108e20b5e52, type: 3}
-  slime: {fileID: 21300000, guid: 58b4f0084b7913a7c806da491b68e7d8, type: 3}
+  noSprite: {fileID: 21300000, guid: 9e19dd9ad49099cb18a8bfaa046cf71d, type: 3}
+  slime: {fileID: 21300000, guid: f4e60ed4999ebce4d85238934bb07ba2, type: 3}
   box: {fileID: 21300000, guid: 6f79c0e0f2dbd011c8b829f6c2b50379, type: 3}
-  pillar: {fileID: 21300000, guid: 054b8481838c584d4ba2327f65e88bdd, type: 3}
-  balloon: {fileID: 21300000, guid: a46ffb29767c27e88a09aa467c690053, type: 3}
+  pillar: {fileID: 21300000, guid: 73da3dc714b90a9e3965adfb8e1bc277, type: 3}
+  balloon: {fileID: 21300000, guid: 1a4683d2f6ff9b84484d6d0918bd0bad, type: 3}
   ball: {fileID: 21300000, guid: 4980b8edd9dc0feb1bc7ccc28e31ebfc, type: 3}
   noticeText: {fileID: 1363836789501333454}
   inventory: 00000000020000000300000004000000
-  level: 0
+  onCD: 00000000
 --- !u!1 &6595834317432787360
 GameObject:
   m_ObjectHideFlags: 0
@@ -2079,8 +2079,8 @@ RectTransform:
   - {fileID: 1359768128776339509}
   m_Father: {fileID: 4208346841073047250}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.7521721, y: 0.87900007}
-  m_AnchorMax: {x: 0.95000005, y: 0.943}
+  m_AnchorMin: {x: 0.7494793, y: 0.88000005}
+  m_AnchorMax: {x: 0.95147926, y: 0.943}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2101,8 +2101,8 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 40
+  m_ChildAlignment: 4
+  m_Spacing: 30
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
@@ -2435,8 +2435,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b8b30685f16813041a57a207d836da14, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 6f79c0e0f2dbd011c8b829f6c2b50379, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2644,8 +2644,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 58b4f0084b7913a7c806da491b68e7d8, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f4e60ed4999ebce4d85238934bb07ba2, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2653,7 +2653,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 16
 --- !u!1 &9218824603956617539
 GameObject:
   m_ObjectHideFlags: 0
