@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pillarPrefab: {fileID: 3883910038234701182, guid: f1d83a8f1230f65079717886e1626d96, type: 3}
-  spawnPoint: {x: -3, y: 3}
+  spawnPoint: {x: -16, y: 4}
 --- !u!1 &3252270090935018546
 GameObject:
   m_ObjectHideFlags: 0
