@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System;
 
 public class PlayerScript : MonoBehaviour{
 
@@ -88,7 +90,11 @@ public class PlayerScript : MonoBehaviour{
     // touch danger death
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
-            BeeManager.Instance.removeBees();
+
+            try {
+
+                BeeManager.Instance.removeBees();
+            } catch(Exception ex) {}
             audioManager.PlaySFX(deathSound);
             Destroy(gameObject);
         }
