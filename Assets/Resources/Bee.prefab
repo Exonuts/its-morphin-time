@@ -103,7 +103,7 @@ MonoBehaviour:
     m_Bits: 8
   obstacle:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   beehive: {fileID: 0}
   searchRadius: 20
   objectSearchRadius: 2
