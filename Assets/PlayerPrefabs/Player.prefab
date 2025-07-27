@@ -8,13 +8,13 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9076467715084243867}
-  - component: {fileID: 3628164235676866942}
-  - component: {fileID: 849749369172887909}
-  - component: {fileID: 7903121984206480240}
-  - component: {fileID: 2987920445250498362}
-  - component: {fileID: 8491791319359448158}
-  m_Layer: 0
+  - component: {fileID: 139011113883190738}
+  - component: {fileID: 4535077791108708258}
+  - component: {fileID: 8079478215685480738}
+  - component: {fileID: 1762861322543408259}
+  - component: {fileID: 1602164326143679907}
+  - component: {fileID: 7262506750715061967}
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
