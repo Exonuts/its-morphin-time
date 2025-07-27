@@ -1128,8 +1128,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a46ffb29767c27e88a09aa467c690053, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 1a4683d2f6ff9b84484d6d0918bd0bad, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1851,15 +1851,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isTouchingWall: 0
   testTest: {fileID: 4499935516996301538}
+  pauseMenu: {fileID: 451676902375560584}
+  resumeText: {fileID: 608033247408200223}
+  menuText: {fileID: 1025443970310850286}
   overlay: {fileID: 6047846728113110192}
   selectedOne: {fileID: 21300000, guid: a4b9de462272f0197914bc56a362799a, type: 3}
   selectedTwo: {fileID: 21300000, guid: 98fc8a1a9aad67949a9ea867477bc366, type: 3}
   selectedThree: {fileID: 21300000, guid: db8ef0187a9c35e75a6a3bf503d37bcd, type: 3}
   selectedFour: {fileID: 21300000, guid: b1c63022d078df2c9b799b003e472856, type: 3}
   selected: 1
-  resumeText: {fileID: 608033247408200223}
-  menuText: {fileID: 1025443970310850286}
-  pauseMenu: {fileID: 451676902375560584}
   formOne: {fileID: 1555771132675408203}
   formTwo: {fileID: 110973602716942977}
   formThree: {fileID: 4584879926970799037}
@@ -1871,8 +1871,7 @@ MonoBehaviour:
   balloon: {fileID: 21300000, guid: a46ffb29767c27e88a09aa467c690053, type: 3}
   ball: {fileID: 21300000, guid: 4980b8edd9dc0feb1bc7ccc28e31ebfc, type: 3}
   noticeText: {fileID: 1363836789501333454}
-  inventory: 00000000020000000300000004000000
-  level: 0
+  onCD: 00000000
 --- !u!1 &6595834317432787360
 GameObject:
   m_ObjectHideFlags: 0
