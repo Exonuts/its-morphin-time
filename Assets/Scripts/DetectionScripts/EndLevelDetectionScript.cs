@@ -12,7 +12,7 @@ public class EndLevelDetectionScript : MonoBehaviour
         col2D = this.GetComponent<Collider2D>();
     }
 
-    void OnTriggerEnter2D(Collision2D trigger){
+    void OnTriggerEnter2D(Collider2D trigger){
         if (trigger.gameObject.tag == "Player"){
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             return;
