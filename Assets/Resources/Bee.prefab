@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   obstacle:
     serializedVersion: 2
     m_Bits: 8
