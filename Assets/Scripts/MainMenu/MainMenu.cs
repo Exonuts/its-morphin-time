@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour {
 
     public TMP_Text playText;
     public TMP_Text settingsText;
-    public TMP_Text thirdText;
 
     int selected = 0; // 0 = play 1 = settings
 
@@ -55,9 +54,6 @@ public class MainMenu : MonoBehaviour {
             case 1:
                 SetSettingsSelected();
                 break;
-            case 2:
-                SetThirdSelected();
-                break;
         }
     }
 
@@ -89,8 +85,6 @@ public class MainMenu : MonoBehaviour {
         playText.fontStyle = FontStyles.Underline;
         settingsText.color = Color.black;
         settingsText.fontStyle = FontStyles.Normal;
-        thirdText.color = Color.black;
-        thirdText.fontStyle = FontStyles.Normal;
     }
 
     public void SetSettingsSelected(){
@@ -99,17 +93,5 @@ public class MainMenu : MonoBehaviour {
         playText.fontStyle = FontStyles.Normal;
         settingsText.color = Color.red;
         settingsText.fontStyle = FontStyles.Underline;
-        thirdText.color = Color.black;
-        thirdText.fontStyle = FontStyles.Normal;
-    }
-
-    public void SetThirdSelected(){
-        selected = 2;
-        playText.color = Color.black;
-        playText.fontStyle = FontStyles.Normal;
-        settingsText.color = Color.black;
-        settingsText.fontStyle = FontStyles.Normal;
-        thirdText.color = Color.red;
-        thirdText.fontStyle = FontStyles.Underline;
     }
 }
