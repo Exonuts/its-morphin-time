@@ -8,6 +8,10 @@ public class BallCharacterScript : MonoBehaviour
     public float moveForce;
     public float maxSpeed;
     private Rigidbody2D rb;
+    
+    public AudioClip deathSound;
+    public AudioManager audioManager;
+    public GameObject manager;
 
     // Death and respawn
     public Transform respawnPoint;
@@ -15,6 +19,8 @@ public class BallCharacterScript : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        manager = GameObject.Find("AudioManager");
+        audioManager = manager.GetComponent<AudioManager>();
     }
 
     void FixedUpdate()
@@ -40,6 +46,7 @@ public class BallCharacterScript : MonoBehaviour
     // touch danger death
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            audioManager.PlaySFX(deathSound);
             rb.velocity = Vector2.zero;
             rb.position = respawnPoint.position;
         }

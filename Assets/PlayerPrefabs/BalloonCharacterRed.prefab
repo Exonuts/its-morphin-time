@@ -167,6 +167,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   checkRadius: 0.4
+  deathSound: {fileID: 8300000, guid: 3656866822fc946518d00b5d2884b501, type: 3}
+  manager: {fileID: 0}
   isDead: 0
   regenerating: 0
   respawnPoint: {fileID: 0}
