@@ -15,6 +15,11 @@ public class PlayerScript : MonoBehaviour{
     public float raycastDistance;
     public LayerMask terrainLayer;
 
+    // audio
+    public GameObject manager;
+    private AudioManager audioManager;
+    public AudioClip deathSound;
+
     // Model and animation
     private Animator anim;
     private bool isFacingRight;
@@ -25,7 +30,8 @@ public class PlayerScript : MonoBehaviour{
     void Start(){
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        manager = GameObject.Find("AudioManager");
+        audioManager = manager.GetComponent<AudioManager>();
         // make character face right
         isFacingRight = false;
         flip();
@@ -82,6 +88,7 @@ public class PlayerScript : MonoBehaviour{
     // touch danger death
     void OnCollisionEnter2D(Collision2D other){
         if (other.gameObject.layer == LayerMask.NameToLayer("Killer")){
+            audioManager.PlaySFX(deathSound);
             Destroy(gameObject);
         }
     }

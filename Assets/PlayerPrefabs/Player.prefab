@@ -200,4 +200,6 @@ MonoBehaviour:
   terrainLayer:
     serializedVersion: 2
     m_Bits: 8
+  manager: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: 3656866822fc946518d00b5d2884b501, type: 3}
   respawnPoint: {fileID: 0}
