@@ -25,13 +25,14 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
     public void StartRun() {
         // Spawn the form at the specified position
         GameObject newPlayer = Instantiate(toSpawn, spawnPoint, Quaternion.identity);
+        invMgr.deathCount++;
         newPlayer.tag = "Player";
         invMgr.selected = 1;
     }
 
     void Update(){
         if (SceneManager.GetActiveScene().buildIndex == 1){
-            Debug.Log(SceneManager.GetActiveScene().buildIndex);
+            //Debug.Log(SceneManager.GetActiveScene().buildIndex);
         } else {
             GameObject existingPlayer = GameObject.FindGameObjectWithTag("Player");
             if (existingPlayer == null) {

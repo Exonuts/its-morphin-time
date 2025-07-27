@@ -52,6 +52,12 @@ public class InventoryManagement : MonoBehaviour {
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
+
+    public int deathCount = 0;
+    public Boolean deathCountOn = false;
+    TMP_Text onOff;
+    public TMP_Text deathCountDisplay;
+    GameObject settingsMenu;
     #endregion
     
     #region cooldowns
@@ -65,11 +71,33 @@ public class InventoryManagement : MonoBehaviour {
     #endregion
 
     // Start is called before the first frame update
-    void Start() { noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
+    void Start() {
+        onOff = GameObject.FindGameObjectWithTag("settingsButton").GetComponent<TMP_Text>();
+        noticeText.text = ""; swapping = false; ccgs = GetComponentInParent<CollideCheckerGroupScript>();
     } // HAHAHA I CAN PUT IT ALL ON ONE LINE
+
+    public void ToggleDeathCount(){
+        if(deathCountOn){
+            deathCountOn = false;
+        } else {
+            deathCountOn = true;
+        }
+    }
 
     // Update is called once per frame
     void Update() {
+        if (deathCountOn){
+            if (SceneManager.GetActiveScene().name == "MainMenu"){
+                onOff.text = "On";
+            }
+            deathCountDisplay.text = "Death Count: " + deathCount;
+        } else {
+            if (SceneManager.GetActiveScene().name == "MainMenu"){
+                onOff.text = "Off";
+            }
+            deathCountDisplay.text = "";
+        }
+
         level = SceneManager.GetActiveScene().buildIndex;
         #region pause menu update things
         if (isPaused){ // sets pause menu visibility based on if the game is paused or not
@@ -402,11 +430,11 @@ public class InventoryManagement : MonoBehaviour {
     }
 
     int AvailSlot(){ // simple calculation for how many form slots you have based on what elvel the player is (subject to change)
-        if (level <= 2){ // main menu, my scecne, 
+        if (level <= 1){ // main menu, my scecne, 
             return 0;
-        } else if (level <= 3){ // 1 2 | 1 extra
+        } else if (level <= 2){ // 1 2 | 1 extra
             return 1;
-        } else if (level <= 5){ // 3 4 | 2 extra
+        } else if (level <= 4){ // 3 4 | 2 extra
             return 2;
         } else { // all slots unlocked
             return 3;
