@@ -58,7 +58,7 @@ public class BeeManager : MonoBehaviour
 
                 beesSummoned = true;
                 actualAudio.PlaySFX(beeSound);
-                for (int i = 0; i < 30; i++) {
+                for (int i = 0; i < 10; i++) {
 
                     GameObject beeToAdd = Instantiate(Resources.Load<GameObject>("Bee"),new Vector3(13.21f,1.4f,0f),Quaternion.Euler(0f,0f,0f));
                     float scale = Random.Range(0.3f,0.7f);
