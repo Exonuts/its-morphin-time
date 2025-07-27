@@ -178,6 +178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897334f53b9f4c5419d9e051f41cccd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  torqueForce: 5
-  maxAngularSpeed: 100
+  torqueForce: 60
+  maxAngularSpeed: 50
   respawnPoint: {fileID: 0}
