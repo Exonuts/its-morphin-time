@@ -3,5 +3,3 @@
 2d platformer where you can immitate objects!
 
 Objectives: To meet John Simulacrum.
-
-![alt text] (https://github.com/Exonuts/project-simulacrum/blob/main/Assets/Sprites/john2%201.png "John Simulacrum")
