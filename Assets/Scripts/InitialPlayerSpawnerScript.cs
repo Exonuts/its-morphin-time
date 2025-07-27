@@ -25,6 +25,7 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
     public void StartRun() {
         // Spawn the form at the specified position
         GameObject newPlayer = Instantiate(toSpawn, spawnPoint, Quaternion.identity);
+        invMgr.deathCount++;
         newPlayer.tag = "Player";
         invMgr.selected = 1;
     }

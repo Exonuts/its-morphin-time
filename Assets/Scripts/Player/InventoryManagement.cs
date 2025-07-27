@@ -52,6 +52,9 @@ public class InventoryManagement : MonoBehaviour {
     int hoveredForm = 0; // 0 if nothing is being hovered, 1 if box is being hovered, 2 for pillar, 3 for balloon etc
     Boolean swapping = false;
     CollideCheckerGroupScript ccgs;
+
+    public int deathCount = 0;
+    public Boolean deathCountOn = false;
     #endregion
     
     #region cooldowns
