@@ -5,16 +5,31 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/LevelOne.unity
     guid: 10e2847abf0f85544a7c0c96e27ee2d0
-  - enabled: 0
-    path: Assets/Scenes/HugoScene.unity
-    guid: 9555bfa3fe0bbbc459cadb7b562021c7
   - enabled: 1
-    path: Assets/Scenes/TESTTESTTEST.unity
-    guid: d4e9106144a023b7d9e54e046bf9da4f
+    path: Assets/Scenes/PillarLevelOne.unity
+    guid: 7a9ae4420d727774abdd10fbc9127172
+  - enabled: 1
+    path: Assets/Scenes/PillarLevelTwo.unity
+    guid: 3dc246e4cb68b8042b7db7524978692e
+  - enabled: 1
+    path: Assets/Scenes/EthanSceneTwo.unity
+    guid: d040592b299b6471781095ce61ff2f96
+  - enabled: 1
+    path: Assets/Scenes/Ethanlevel2.unity
+    guid: c24fbc0b627644037821df5c43342137
+  - enabled: 1
+    path: Assets/Scenes/Ethanlevel3.unity
+    guid: 3b374e4c3311e4b12b03a5dff8af8b75
+  - enabled: 1
+    path: Assets/Scenes/Ethanlevel4.unity
+    guid: 4305bab859ae84e589f3729ff52ef70d
+  - enabled: 1
+    path: Assets/Scenes/Ethanlevel5.unity
+    guid: bd5876ef686d94f8b8f0889c3822be3e
   m_configObjects: {}

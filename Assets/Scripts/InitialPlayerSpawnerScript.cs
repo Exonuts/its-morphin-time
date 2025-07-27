@@ -6,6 +6,7 @@ public class InitialPlayerSpawnerScript : MonoBehaviour
 {
     public GameObject toSpawn;
     public Vector2 spawnPoint;
+    public Collider2D playerCollider;
 
     void Start()
     {

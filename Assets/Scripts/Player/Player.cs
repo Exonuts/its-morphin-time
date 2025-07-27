@@ -21,7 +21,6 @@ public class PlayerScript : MonoBehaviour{
 
     // Death and respawn
     public Transform respawnPoint;
-    public Transform endingPoint;
 
     void Start(){
         rb = GetComponent<Rigidbody2D>();
@@ -34,7 +33,6 @@ public class PlayerScript : MonoBehaviour{
 
     void Update(){
         respawnPoint = GameObject.FindGameObjectWithTag("Respawn").transform;
-        endingPoint = GameObject.FindGameObjectWithTag("Finish").transform;
         float input = Input.GetAxis("Horizontal");
 
         // Apply velocity continuously based on input
