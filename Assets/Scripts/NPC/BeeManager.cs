@@ -15,6 +15,8 @@ public class BeeManager : MonoBehaviour
 
     public GameObject beeFolder;
 
+    private List<GameObject> bees = new List<GameObject>();
+
     public float searchRadius = 7f;
 
     void Awake() {
@@ -56,14 +58,14 @@ public class BeeManager : MonoBehaviour
 
                 beesSummoned = true;
                 actualAudio.PlaySFX(beeSound);
-                for (int i = 0; i < 100; i++) {
+                for (int i = 0; i < 30; i++) {
 
-                    Debug.Log("Summoned");
                     GameObject beeToAdd = Instantiate(Resources.Load<GameObject>("Bee"),new Vector3(13.21f,1.4f,0f),Quaternion.Euler(0f,0f,0f));
                     float scale = Random.Range(0.3f,0.7f);
                     beeToAdd.transform.localScale = new Vector3(scale,scale,scale);
                     string targetLayerName = "Killer";
                     int layer = LayerMask.NameToLayer(targetLayerName);
+                    bees.Add(beeToAdd);
                     beeToAdd.layer = layer;
                     beeToAdd.transform.SetParent(beeFolder.transform);
                 }
@@ -71,5 +73,16 @@ public class BeeManager : MonoBehaviour
             }
 
         }
+    }
+
+    public void removeBees() {
+
+        for (int i = 0; i < bees.Count; i++) {
+
+            Destroy(bees[i]);
+
+        }
+        beesSummoned = false;
+
     }
 }
