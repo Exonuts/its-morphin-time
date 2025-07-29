@@ -1,9 +1,9 @@
 const cacheName = "git merge-It's Morphin' Time-1";
 const contentToCache = [
-    "Build/1.loader.js",
-    "Build/1.framework.js.br",
-    "Build/1.data.br",
-    "Build/1.wasm.br",
+    "Build/Build.loader.js",
+    "Build/Build.framework.js.br",
+    "Build/Build.data.br",
+    "Build/Build.wasm.br",
     "TemplateData/style.css"
 
 ];
